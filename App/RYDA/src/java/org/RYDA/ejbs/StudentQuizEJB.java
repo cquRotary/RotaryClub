@@ -8,7 +8,7 @@ package org.RYDA.ejbs;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.RYDA.entities.StudentQuiz;
 
@@ -19,7 +19,7 @@ import org.RYDA.entities.StudentQuiz;
 @Stateless
 public class StudentQuizEJB {
 
-    @PersistenceUnit(unitName = "RYDAPU")
+    @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
     
     public StudentQuiz createStudentQuiz(StudentQuiz studentQuiz){

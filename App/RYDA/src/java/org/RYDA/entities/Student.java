@@ -6,6 +6,7 @@
 package org.RYDA.entities;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,19 +22,19 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Student")
-@NamedQuery(name = "listStudent", query = "Select s from Student s")
-public class Student extends Users implements Serializable {
+@NamedQuery(name = "getAllStudents", query = "Select s from Student s")
+public class Student extends User implements Serializable {
 
-    @Temporal(TemporalType.DATE)
-    private String dob;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dob;
     private String email;
     private String studentID;
 
-    public String getDob() {
+    public Calendar getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Calendar dob) {
         this.dob = dob;
     }
 

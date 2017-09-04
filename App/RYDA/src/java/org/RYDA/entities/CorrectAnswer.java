@@ -23,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CorrectAnswer")
-@NamedQuery(name = "correctAnswer", query = "Select c FROM CorrectAnswer c where c.QUESTIONID = :qId")
+@NamedQuery(name = "getAllCorrectAnswers", query = "SELECT c FROM CorrectAnswer c where c.questionId = :qId")
 public class CorrectAnswer implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,11 +38,11 @@ public class CorrectAnswer implements Serializable {
     private String description;
     @OneToOne(optional = false, fetch = FetchType.EAGER)                        //one to one relationship between customer order and car entity
     @JoinColumn(name = "QUESTIONID", referencedColumnName = "QUESTIONID", insertable = false, updatable = false)
-    private Questions question;
+    private Question question;
     
     @OneToOne(optional = false, fetch = FetchType.EAGER)                        //one to one relationship between customer order and car entity
     @JoinColumn(name = "ANSWERID", referencedColumnName = "ANSWERID", insertable = false, updatable = false)
-    private Answers answer;
+    private Answer answer;
 
     public Long getId() {
         return id;
@@ -76,19 +76,19 @@ public class CorrectAnswer implements Serializable {
         this.description = description;
     }
 
-    public Questions getQuestion() {
+    public Question getQuestion() {
         return question;
     }
 
-    public void setQuestion(Questions question) {
+    public void setQuestion(Question question) {
         this.question = question;
     }
 
-    public Answers getAnswer() {
+    public Answer getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Answers answer) {
+    public void setAnswer(Answer answer) {
         this.answer = answer;
     }
 

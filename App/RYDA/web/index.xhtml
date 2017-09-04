@@ -1,12 +1,73 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
-        Hello from Facelets
+        <ui:composition template="template/common/commonLayout.xhtml">
+            <ui:param name="curFileName" value="Dashboard"></ui:param>
+            <ui:define name="content">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                Question setup
+                            </div>
+                            <div class="panel-body">
+                                <h:link value="View Brand New Cars" outcome="question-list.xhtml"  /><br></br>
+                                <h:link value="Create new" outcome="brandnewcar.xhtml" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                Quiz setup
+                            </div>
+                            <div class="panel-body">
+                                <h:link value="View Used Cars" outcome="quiz-list.xhtml"  /><br></br>
+                                <h:link value="Create new" outcome="usedcar.xhtml"    />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                    <div class="col-lg-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                User setup
+                            </div>
+                            <div class="panel-body">
+                                <h:link value="View Customer" outcome="user-list.xhtml" /><br></br>
+                                <h:link value="Create new" outcome="customer.xhtml"   />
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                Report
+                            </div>
+                            <div class="panel-body">
+                                <h:link value="View Orders" outcome="order-list.xhtml" /><br></br>
+                                <h:link value="Create new" outcome="order.xhtml"   />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- /.col-lg-4 -->
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
-

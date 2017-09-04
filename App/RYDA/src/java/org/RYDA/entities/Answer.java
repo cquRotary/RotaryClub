@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.RYDA.entities;
 
 import java.io.Serializable;
@@ -27,27 +22,27 @@ import javax.persistence.TemporalType;
  * @author Kshav
  */
 @Entity
-@Table(name = "Answers")
+@Table(name = "Answer")
 @NamedQueries({
-    @NamedQuery(name = "correctAnswer", query ="Select a FROM Answers a where a.ANSWERID = :aId"),
-    @NamedQuery(name = "listAnswers", query = "Select a FROM Answers a where a.QUESTIONID = :qId")
+    @NamedQuery(name = "getAnswerByAnswerId", query ="SELECT a FROM Answer a WHERE a.id = :aId"),
+    @NamedQuery(name = "getAllAnswers", query = "SELECT a FROM Answer a WHERE a.questionId = :qId")
 })
 
-public class Answers implements Serializable {
+public class Answer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "ANSWERID")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "answerId")
     private Long id;
-    @Column(name = "QUESTIONID")
+    @Column(name = "questionId")
     private Long questionId;
     private String answerOption;
     @Temporal(TemporalType.DATE)
     private Date dateCreated;
     @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)            //many to one relationship beween customer orders and customer entity
-    @JoinColumn(name = "QUESTIONID", referencedColumnName = "QUESTIONID", insertable = false, updatable = false)
-    private Questions question;
+    @JoinColumn(name = "questionId", referencedColumnName = "questionId", insertable = false, updatable = false)
+    private Question question;
 
     public Long getId() {
         return id;
@@ -81,11 +76,11 @@ public class Answers implements Serializable {
         this.dateCreated = dateCreated;
     }
 
-    public Questions getQuestion() {
+    public Question getQuestion() {
         return question;
     }
 
-    public void setQuestion(Questions question) {
+    public void setQuestion(Question question) {
         this.question = question;
     }
     
@@ -100,10 +95,10 @@ public class Answers implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Answers)) {
+        if (!(object instanceof Answer)) {
             return false;
         }
-        Answers other = (Answers) object;
+        Answer other = (Answer) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

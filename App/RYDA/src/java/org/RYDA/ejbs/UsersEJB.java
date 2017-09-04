@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import org.RYDA.entities.Administrator;
 import org.RYDA.entities.Student;
-import org.RYDA.entities.Users;
+import org.RYDA.entities.User;
 
 /**
  *
@@ -28,7 +28,7 @@ public class UsersEJB {
     private List<Administrator> adminList = new ArrayList<Administrator>();          
     private List<Student> studentList = new ArrayList<Student>();          
     
-    public List<Users> listUsers(){                    
+    public List<User> listUsers(){                    
         Query query = em.createNamedQuery("listUsers");
         return query.getResultList();
     }

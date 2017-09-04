@@ -19,8 +19,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Administrator")
-@NamedQuery(name = "listAdmin", query = "Select a FROM Administrator a")
-public class Administrator extends Users implements Serializable {
+@NamedQuery(name = "getAllAdministrators", query = "Select a FROM Administrator a")
+public class Administrator extends User implements Serializable {
     private String employeeId;
     private String position;
 

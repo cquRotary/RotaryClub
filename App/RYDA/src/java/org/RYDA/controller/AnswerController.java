@@ -11,7 +11,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.RYDA.ejbs.AnswersEJB;
-import org.RYDA.entities.Answers;
+import org.RYDA.entities.Answer;
 
 /**
  *
@@ -19,12 +19,12 @@ import org.RYDA.entities.Answers;
  */
 @Named(value = "answersController")
 @RequestScoped
-public class AnswersController {
+public class AnswerController {
 
     @EJB
     private AnswersEJB answerEJB;        
-    private Answers answer = new Answers();     
-    private List<Answers> answerList = new ArrayList<Answers>();        
+    private Answer answer = new Answer();     
+    private List<Answer> answerList = new ArrayList<Answer>();        
     
     public String addAnswer(){                
         answer = answerEJB.createAnswer(answer);            
@@ -40,21 +40,19 @@ public class AnswersController {
         this.answerEJB = answerEJB;
     }
 
-    public Answers getAnswer() {
+    public Answer getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Answers answer) {
+    public void setAnswer(Answer answer) {
         this.answer = answer;
     }
 
-    public List<Answers> getAnswerList() {
+    public List<Answer> getAnswerList() {
         return answerList;
     }
 
-    public void setAnswerList(List<Answers> answerList) {
+    public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
     }
-    
-    
 }

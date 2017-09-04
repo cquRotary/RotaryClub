@@ -26,24 +26,24 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Users")
+@Table(name = "User")
 @NamedQueries({
-        @NamedQuery(name = "listusers", query = "Select u from Users u"),
-        @NamedQuery(name = "user", query = "Select u from Users u where u.username = :user AND u.password = :pass")
+        @NamedQuery(name = "getAllUsers", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "authenticateUser", query = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass")
 })
-@DiscriminatorColumn(name = "USERTYPE")
-public class Users implements Serializable {
+@DiscriminatorColumn(name = "userType")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "USERID")
+    @Column(name = "userId")
     private Long id;
     private String fullName;
     private String username;
     private String password;
      
-
+    //accessorts and mutators
     public String getUsername() {
         return username;
     }
@@ -86,10 +86,10 @@ public class Users implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Users)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Users other = (Users) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

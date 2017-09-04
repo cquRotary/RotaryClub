@@ -8,9 +8,9 @@ package org.RYDA.ejbs;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import org.RYDA.entities.Answers;
+import org.RYDA.entities.Answer;
 import org.RYDA.entities.CorrectAnswer;
 
 /**
@@ -20,7 +20,7 @@ import org.RYDA.entities.CorrectAnswer;
 @Stateless
 public class CorrectAnswerEJB {
 
-    @PersistenceUnit(unitName = "RYDAPU")
+    @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
     
     public CorrectAnswer createCorrectAnswer(CorrectAnswer correctAnswer){

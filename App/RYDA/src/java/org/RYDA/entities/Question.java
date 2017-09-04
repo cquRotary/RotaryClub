@@ -6,6 +6,7 @@
 package org.RYDA.entities;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,28 +27,22 @@ import javax.persistence.TemporalType;
  * @author Kshav
  */
 @Entity
-@Table(name = "Questions")
-@NamedQuery(name = "listQuestions", query = "Select q FROM Questions q")
-public class Questions implements Serializable {
+@Table(name = "Question")
+@NamedQuery(name = "listQuestions", query = "SELECT q FROM Question q")
+public class Question implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "QUESTIONID")
+    @Column(name = "questionId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "QUIZID")
-    private Long quizId;
     private String question;
     private String hint;
-    @Temporal(TemporalType.DATE)
-    private Date dateCreated;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dateCreated;
     private Long userId;
     
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)            //many to one relationship beween customer orders and customer entity
-    @JoinColumn(name = "QUIZID", referencedColumnName = "QUIZID", insertable = false, updatable = false)
-    private Quiz quiz;
-    
-
+    //accessors and mutators
     public Long getId() {
         return id;
     }
@@ -72,11 +67,11 @@ public class Questions implements Serializable {
         this.hint = hint;
     }
 
-    public Date getDateCreated() {
+    public Calendar getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(Calendar dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -86,22 +81,6 @@ public class Questions implements Serializable {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public Long getQuizId() {
-        return quizId;
-    }
-
-    public void setQuizId(Long quizId) {
-        this.quizId = quizId;
-    }
-
-    public Quiz getQuiz() {
-        return quiz;
-    }
-
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
     }
 
     @Override
@@ -114,10 +93,10 @@ public class Questions implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Questions)) {
+        if (!(object instanceof Question)) {
             return false;
         }
-        Questions other = (Questions) object;
+        Question other = (Question) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

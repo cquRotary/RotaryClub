@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.RYDA.entities;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,23 +12,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Kshav
- */
 @Entity
 @Table(name = "Quiz")
-@NamedQuery(name = "listQuiz", query = "Select q FROM Quiz q")
+@NamedQuery(name = "getAllQuizzes", query = "SELECT q FROM Quiz q")
 public class Quiz implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "QUIZID")
+    @Column(name = "quizId")
     private Long id;
     private String title;
-    @Temporal(TemporalType.DATE)
-    private String dateCreated;        
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dateCreated;        
 
     public Long getId() {
         return id;
@@ -50,11 +42,11 @@ public class Quiz implements Serializable {
         this.title = title;
     }
 
-    public String getDateCreated() {
+    public Calendar getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(Calendar dateCreated) {
         this.dateCreated = dateCreated;
     }
     

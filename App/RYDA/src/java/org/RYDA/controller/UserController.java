@@ -13,7 +13,7 @@ import javax.enterprise.context.RequestScoped;
 import org.RYDA.ejbs.UsersEJB;
 import org.RYDA.entities.Administrator;
 import org.RYDA.entities.Student;
-import org.RYDA.entities.Users;
+import org.RYDA.entities.User;
 
 /**
  *
@@ -21,15 +21,15 @@ import org.RYDA.entities.Users;
  */
 @Named(value = "usersController")
 @RequestScoped
-public class UsersController {
+public class UserController {
 
     @EJB
     private UsersEJB userEJB;      
     
     private Administrator admin = new Administrator();      
     private Student student = new Student();       
-    private Users user = new Users();               
-    private List<Users> userList = new ArrayList<Users>();      
+    private User user = new User();               
+    private List<User> userList = new ArrayList<User>();      
     private List<Administrator> adminList = new ArrayList<Administrator>();  
     private List<Student> studentList = new ArrayList<Student>();      
    
@@ -70,19 +70,19 @@ public class UsersController {
         this.student = student;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public List<Users> getUserList() {
+    public List<User> getUserList() {
         return userList;
     }
 
-    public void setUserList(List<Users> userList) {
+    public void setUserList(List<User> userList) {
         this.userList = userList;
     }
 

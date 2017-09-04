@@ -6,6 +6,7 @@
 package org.RYDA.entities;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,14 +23,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Kshav
- */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "StudentQuiz")
-@NamedQuery(name = "listStudentQuiz", query = "Select s from StudentQuiz s")
+@NamedQuery(name = "getAllStudentQuiz", query = "Select s from StudentQuiz s")
 public class StudentQuiz implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,8 +51,8 @@ public class StudentQuiz implements Serializable {
     private Integer noOfRightAnswers;
     private Integer noOfWrongAnswers;
     private Integer noOfQuestionsSkipped;
-    @Temporal(TemporalType.DATE)
-    private Integer attemptDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar attemptDate;
     
     
     public Long getId() {
@@ -129,11 +126,11 @@ public class StudentQuiz implements Serializable {
         this.noOfQuestionsSkipped = noOfQuestionsSkipped;
     }
 
-    public Integer getAttemptDate() {
+    public Calendar getAttemptDate() {
         return attemptDate;
     }
 
-    public void setAttemptDate(Integer attemptDate) {
+    public void setAttemptDate(Calendar attemptDate) {
         this.attemptDate = attemptDate;
     }
 
