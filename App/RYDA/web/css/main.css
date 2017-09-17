@@ -999,7 +999,7 @@ transition: .7s cubic-bezier(.825, 0, .5, 1);
 width: 192px;
 height: 38px;
 display: block;
-color: white;
+color: orange;
 }
 
 .logo a.img1,
