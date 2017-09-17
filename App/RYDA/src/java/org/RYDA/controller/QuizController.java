@@ -10,6 +10,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import org.RYDA.ejbs.QuizEJB;
 import org.RYDA.entities.Quiz;
 
@@ -23,10 +25,14 @@ public class QuizController {
 
     @EJB
     private QuizEJB quizEJB;        
-    private Quiz quiz = new Quiz();     
-    private List<Quiz> quizList = new ArrayList<Quiz>();        
+    private Quiz quiz;     
+    private List<Quiz> quizList;
     
-    public String addQuestion(){                
+        quiz = new Quiz();
+        quizList = new ArrayList<Quiz>();
+    }
+    
+    public String addQuiz(){                
         quiz = quizEJB.createQuiz(quiz);            
         quizList = quizEJB.listQuiz();
         return "quizList.xhtml";            
@@ -56,6 +62,31 @@ public class QuizController {
         this.quizList = quizList;
     }
     
+    //method to create Quiz
+    public String createQuiz() {
+        quiz = quizEJB.createQuiz(quiz);
+        quizList = quizEJB.listQuiz();
+        FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully"));
+        return "quiz-list.xhtml";
+    }
     
+    // delete customer
+    public String deleteAction(long id) {
+        boolean success = quizEJB.delete(id);
+        quizList = quizEJB.listQuiz();
+        if (success){
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Record deleted successfully"));
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Something went wrong. Please try again"));
+        }
+        return "quiz-list.xhtml";
+    }
+    
+    /// view products on customer
+    public String viewAction(long id) {
+        quiz = quizEJB.getQuizById(id);
+        return "quiz-details.xhtml";
+    }
     
 }

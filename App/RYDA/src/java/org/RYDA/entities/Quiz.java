@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -14,7 +15,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Quiz")
-@NamedQuery(name = "getAllQuizzes", query = "SELECT q FROM Quiz q")
+@NamedQueries({
+    @NamedQuery(name = "getAllQuizzes", query = "SELECT q FROM Quiz q"),
+    @NamedQuery(name = "getQuizById", query = "SELECT q FROM Quiz q WHERE q.id = :quizId")
+})
+
 public class Quiz implements Serializable {
 
     private static final long serialVersionUID = 1L;

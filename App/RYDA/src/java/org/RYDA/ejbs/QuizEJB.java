@@ -21,6 +21,7 @@ public class QuizEJB {
 
     @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
+    private Quiz quiz = new Quiz();
     
     public Quiz createQuiz(Quiz quiz){
         em.persist(quiz);
@@ -28,7 +29,20 @@ public class QuizEJB {
     }
     
     public List<Quiz> listQuiz(){
-        TypedQuery<Quiz> query = em.createNamedQuery("listQuiz", Quiz.class);
+        TypedQuery<Quiz> query = em.createNamedQuery("getAllQuizzes", Quiz.class);
         return query.getResultList();
+    }
+    
+    //methods to delete quiz by id
+    public boolean delete(long id) {
+        quiz = em.find(Quiz.class, id);
+        em.remove(quiz);
+        return true;
+    }
+    
+    //methods quering the quiz by quiz id
+    public Quiz getQuizById(long id) {
+        TypedQuery<Quiz> query = em.createNamedQuery("getQuizById", Quiz.class).setParameter("quizId", id);
+        return query.getSingleResult();
     }
 }
