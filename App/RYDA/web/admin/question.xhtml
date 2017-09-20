@@ -33,10 +33,60 @@
                                 <div class="col-sm-5">
                                     <h:message for="hintInput" style="color:red" />
                                 </div>
-                            </div>  
-                            <div class="form-group">
-                                <h:commandButton value="Save" action="#{questionController.createQuestion}" styleClass="btn btn-danger"/>
                             </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <h:commandButton value="Save" action="#{questionController.createQuestion}" styleClass="btn btn-danger"/>
+                                </div>
+                            </div>
+                        </h:form>
+                        
+                        <h:form styleClass="form-horizontal">
+                            <div class="form-group">
+                                <h:outputLabel value="Answers:" styleClass="control-label col-sm-2"/>
+                                <div class="col-sm-5">
+                                    <h:inputHidden value="#{questionController.question.id}"/>
+                                    <h:inputText value="#{questionController.answer.answerOption}" id="answer1Input" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    </h:inputText>
+                                </div>
+                                <div class="col-sm-5">
+                                    <h:message for="answer1Input" style="color:red" />
+                                </div>
+                                <div class="col-sm-5">
+                                    <h:selectBooleanCheckbox value="#{questionController.answer.isCorrect}" /> Is Correct
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <h:commandButton value="Save" action="#{questionController.createAnswer(questionController.question.id)}" styleClass="btn btn-danger"/>
+                                </div>
+                            </div>
+                        </h:form>
+                        
+                        <h:form>
+                            <h:dataTable value="#{questionController.answerList}" var="answer" border="1"  styleClass="table table-striped table-bordered">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Answer"/>
+                                    </f:facet>
+                                    <h:outputText value="#{answer.answerOption}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Is Correct"/>
+                                    </f:facet>
+                                    <h:outputText value="#{answer.isCorrect}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Action</f:facet>
+                                    <h:commandButton action="#{questionController.viewAnswer(answer.id)}" value="View" styleClass="btn btn-default"/>
+                                    <h:commandButton action="#{questionController.deleteAnswer(answer.id, answer.id)}" value="Delete" styleClass="btn btn-default"/>
+                                </h:column>
+                            </h:dataTable>
                         </h:form>
                     </div>
                 </div>

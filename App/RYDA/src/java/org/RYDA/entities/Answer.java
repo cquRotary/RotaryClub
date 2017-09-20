@@ -24,8 +24,8 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Answer")
 @NamedQueries({
-    @NamedQuery(name = "getAnswerByAnswerId", query ="SELECT a FROM Answer a WHERE a.id = :aId"),
-    @NamedQuery(name = "getAllAnswers", query = "SELECT a FROM Answer a WHERE a.questionId = :qId")
+    @NamedQuery(name = "getAnswerByAnswerId", query ="SELECT a FROM Answer a WHERE a.id = :answerId"),
+    @NamedQuery(name = "getAnswersByQuestionId", query = "SELECT a FROM Answer a WHERE a.questionId = :questionId")
 })
 
 public class Answer implements Serializable {
@@ -33,17 +33,23 @@ public class Answer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "answerId")
     private Long id;
     @Column(name = "questionId")
     private Long questionId;
     private String answerOption;
+    private boolean isCorrect;
     @Temporal(TemporalType.DATE)
     private Date dateCreated;
-    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)            //many to one relationship beween customer orders and customer entity
-    @JoinColumn(name = "questionId", referencedColumnName = "questionId", insertable = false, updatable = false)
-    private Question question;
 
+    public Answer()
+    {
+        
+    }
+    public Answer(String answerOption)
+    {
+        this.answerOption = answerOption;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -68,22 +74,21 @@ public class Answer implements Serializable {
         this.answerOption = answerOption;
     }
 
+    public boolean getIsCorrect() {
+        return isCorrect;
+    }
+
+    public void setIsCorrect(boolean isCorrect) {
+        this.isCorrect = isCorrect;
+    }
+    
     public Date getDateCreated() {
         return dateCreated;
     }
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
-    
+    }    
     
     @Override
     public int hashCode() {

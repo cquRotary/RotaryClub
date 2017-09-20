@@ -11,15 +11,12 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.RYDA.ejbs.QuizEJB;
 import org.RYDA.entities.Quiz;
 
-/**
- *
- * @author Kshav
- */
-@Named(value = "quizController")
+@ManagedBean
 @RequestScoped
 public class QuizController {
 
@@ -28,6 +25,8 @@ public class QuizController {
     private Quiz quiz;     
     private List<Quiz> quizList;
     
+    public QuizController()
+    {
         quiz = new Quiz();
         quizList = new ArrayList<Quiz>();
     }
@@ -88,5 +87,4 @@ public class QuizController {
         quiz = quizEJB.getQuizById(id);
         return "quiz-details.xhtml";
     }
-    
 }

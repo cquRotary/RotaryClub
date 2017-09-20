@@ -1,35 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.RYDA.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import org.RYDA.ejbs.CorrectAnswerEJB;
+import org.RYDA.ejbs.AnswersEJB;
 import org.RYDA.ejbs.QuestionEJB;
-import org.RYDA.entities.CorrectAnswer;
+import org.RYDA.entities.Answer;
 import org.RYDA.entities.Question;
 
 @ManagedBean
-@javax.faces.bean.RequestScoped
+@RequestScoped
 public class QuestionController {
     @EJB
     private QuestionEJB questionEJB;        
     private Question question;     
-    private List<Question> questionList;        
+    private List<Question> questionList; 
+    
+    @EJB
+    private AnswersEJB answerEJB;
+    private Answer answer;
+    private List<Answer> answerList;    
     
     public QuestionController () {
         question = new Question();
         questionList = new ArrayList<Question>();
+        answer = new Answer();
+        answerList = new ArrayList<Answer>();
     }
     
     @PostConstruct
@@ -37,7 +38,7 @@ public class QuestionController {
         questionList = questionEJB.listQuestions();
     }
     
-    public String addQuestion(){                
+    public String addQuestion(){    
         question = questionEJB.createQuestion(question);            
         questionList = questionEJB.listQuestions();
         return "question-list.xhtml";            
@@ -67,12 +68,37 @@ public class QuestionController {
         this.questionList = questionList;
     }
     
+    public AnswersEJB getAnswerEJB() {
+        return answerEJB;
+    }
+
+    public void setAnswerEJB(AnswersEJB answerEJB) {
+        this.answerEJB = answerEJB;
+    }
+    
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+    
+    public List<Answer> getAnswerList() {
+        return answerList;
+    }
+
+    public void setAnswerList(List<Answer> answerList) {
+        this.answerList = answerList;
+    }
+    
     //method to create Question
     public String createQuestion() {
         question = questionEJB.createQuestion(question);
         questionList = questionEJB.listQuestions();
+        answerList = answerEJB.listAnswers(question.getId());
         FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully"));
-        return "question-list.xhtml";
+        return "question.xhtml";
     }
     
     // delete customer
@@ -91,6 +117,38 @@ public class QuestionController {
     /// view products on customer
     public String viewAction(long id) {
         question = questionEJB.getQuestionById(id);
-        return "question-details.xhtml";
+        answerList = answerEJB.listAnswers(id);
+        return "question.xhtml";
+    }
+    
+    //method to create Answer
+    public String createAnswer(long questionId) {
+        System.out.println("QuestionId = " + questionId);
+        answer.setQuestionId(questionId);
+        answer = answerEJB.createAnswer(answer);
+        answerList = answerEJB.listAnswers(questionId);
+        FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Save record added successfully" + questionId));
+        question = questionEJB.getQuestionById(questionId);
+        return "question.xhtml";
+    }
+    
+    // delete customer
+    public String deleteAnswer(long id, long questionId) {
+        answer.setQuestionId(questionId);
+        boolean success = answerEJB.delete(id);
+        answerList = answerEJB.listAnswers(questionId);
+        if (success){
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Record deleted successfully"));
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Something went wrong. Please try again"));
+        }
+        return "question.xhtml";
+    }
+    
+    /// view products on customer
+    public String viewAnswer(long id) {
+        answer = answerEJB.getAnswerById(id);
+        return "answer-details.xhtml";
     }
 }
