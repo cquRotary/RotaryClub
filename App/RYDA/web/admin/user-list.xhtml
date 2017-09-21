@@ -18,58 +18,58 @@
                         <div class="input-group custom-search-form">
                             <h:inputText binding="#{searchParam}" styleClass="form-control" />
                             <span class="input-group-btn">
-                                <h:commandButton value="Search" action="#{userController.searchUser(searchParam.value)}" styleClass="btn btn-danger"/>
+                                <h:commandButton value="Search" action="#{appUserController.searchUser(searchParam.value)}" styleClass="btn btn-danger"/>
                             </span>
                         </div>
                     </div>
                 </h:form>
                 <div class="clear"></div>
                 <h:outputText class="text-uppercase" styleClass="text-primary" value="Result: "/>
-                <h:outputText styleClass="text-primary" value="#{userController.userList.size()} record(s)"></h:outputText>
+                <h:outputText styleClass="text-primary" value="#{appUserController.appUserList.size()} record(s)"></h:outputText>
                 <h:form>
-                    <h:dataTable value="#{userController.userList}" var="user" border="1"  styleClass="table table-striped table-bordered">
+                    <h:dataTable value="#{appUserController.appUserList}" var="appUser" border="1"  styleClass="table table-striped table-bordered">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="User Id"/>
                             </f:facet>
-                            <h:outputText value="#{user.id}"/>
+                            <h:outputText value="#{appUser.id}"/>
                         </h:column>
                         
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Full Name"/>
                             </f:facet>
-                            <h:outputText value="#{user.firstName + user.middleName + user.lastName}"/>
+                            <h:outputText value="#{appUser.firstName} #{appUser.middleName} #{appUser.lastName}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Email"/>
                             </f:facet>
-                            <h:outputText value="#{user.email}"/>
+                            <h:outputText value="#{appUser.email}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Phone Number"/>
                             </f:facet>
-                            <h:outputText value="#{user.phoneNumber}"/>
+                            <h:outputText value="#{appUser.phoneNumber}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Username"/>
                             </f:facet>
-                            <h:outputText value="#{user.username}"/>
+                            <h:outputText value="#{appUser.username}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Password"/>
                             </f:facet>
-                            <h:outputText value="#{user.password}"/>
+                            <h:outputText value="#{appUser.password}"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Action</f:facet>
-                            <h:commandButton action="#{userController.viewAction(user.id)}" value="View" styleClass="btn btn-default"/>
-                            <h:commandButton action="#{userController.deleteAction(user.id)}" value="Delete" styleClass="btn btn-default"/>
+                            <h:commandButton action="#{appUserController.viewAction(appUser.id)}" value="View" styleClass="btn btn-default"/>
+                            <h:commandButton action="#{appUserController.deleteAction(appUser.id)}" value="Delete" styleClass="btn btn-default"/>
                             
                         </h:column>
                     </h:dataTable>

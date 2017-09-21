@@ -95,6 +95,10 @@ public class Question implements Serializable {
         this.userId = userId;
     }
 
+    public List<Answer> getAnswers() {
+        return this.answers;
+    }
+    
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }

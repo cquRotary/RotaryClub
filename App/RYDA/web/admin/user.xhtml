@@ -16,74 +16,63 @@
                             <div class="form-group">
                                 <h:outputLabel value="First Name (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.firstName}" id="firstName" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    <h:inputText value="#{appUserController.appUser.firstName}" id="txtFirstName" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
                                     </h:inputText>
                                 </div>
                                 <div class="col-sm-5">
-                                    <h:message for="userInput" style="color:red" />
+                                    <h:message for="txtFirstName" style="color:red" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Middle Name  :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.middleName}" id="middleName" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    <h:inputText value="#{appUserController.appUser.middleName}" id="txtMiddleName" styleClass="form-control">
                                     </h:inputText>
-                                </div>
-                                <div class="col-sm-5">
-                                    <h:message for="userInput" style="color:red" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Last Name (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.lastName}" id="lastName" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    <h:inputText value="#{appUserController.appUser.lastName}" id="txtLastName" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
                                     </h:inputText>
                                 </div>
                                 <div class="col-sm-5">
-                                    <h:message for="userInput" style="color:red" />
+                                    <h:message for="txtLastName" style="color:red" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Email (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.email}" id="email" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    <h:inputText value="#{appUserController.appUser.email}" id="txtEmail" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
                                     </h:inputText>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Phone Number (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.phoneNumber}" id="phoneNumber" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    <h:inputText value="#{appUserController.appUser.phoneNumber}" id="txtPhoneNumber" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
                                     </h:inputText>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Username (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.username}" id="username" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    <h:inputText value="#{appUserController.appUser.username}" id="txtUsername" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
                                     </h:inputText>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel value="Password (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.password}" id="password" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    <h:inputText value="#{appUserController.appUser.password}" id="txtPassword" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
                                     </h:inputText>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <h:outputLabel value="Password (*) :" styleClass="control-label col-sm-2"/>
+                                <div class="col-sm-2"></div>
                                 <div class="col-sm-5">
-                                    <h:inputText value="#{userController.user.username}" id="username" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
-                                    </h:inputText>
+                                    <h:commandButton value="Save" action="#{appUserController.createAppUser()}" styleClass="btn btn-danger"/>
                                 </div>
-                            </div>
-                                <div class="col-sm-5">
-                                    <h:message for="userInput" style="color:red" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h:commandButton value="Save" action="#{userController.createUser}" styleClass="btn btn-danger"/>
                             </div>
                         </h:form>
                     </div>

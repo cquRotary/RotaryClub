@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </f:facet>
+
+        <f:facet name="middle">
+            <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+
+            <h:outputStylesheet name="css/dashboard.css" />
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+            <h:outputScript name="bootstrap/js/bootstrap.js" />
+        </f:facet>
+
+
+
+        <f:facet name="last">
+
+        </f:facet>
+
+    </h:head>
+    <body>
+        <div style="margin-top: 50px; margin-left: 25%; margin-right: 25%; border: 1px solid gray;">
+            <h:form styleClass="form-horizontal">
+                <div class="form-horizontal">
+                    <div class="bg-info form-control alert-info text-center">Login Panel</div>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel value="Username (*) :" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-5">
+                        <h:inputText value="#{loginController.appUser.username}" id="usernameInput" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-2">
+                        <h:message for="usernameInput" style="color:red" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel value="Password (*) :" styleClass="control-label col-sm-2"/>
+                    <div class="col-sm-5">
+                        <h:inputText value="#{loginController.appUser.password}" id="passwordInput" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                        </h:inputText>
+                    </div>
+                    <div class="col-sm-2">
+                        <h:message for="passwordInput" style="color:red" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                        <h:commandButton value="Login" action="#{loginController.authenticateUser()}" styleClass="btn btn-danger"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </body>
+</html>

@@ -15,26 +15,28 @@ import org.RYDA.ejbs.QuizEJB;
 import org.RYDA.entities.Answer;
 import org.RYDA.entities.Question;
 import org.RYDA.entities.Quiz;
+import org.RYDA.library.Utility;
 
 @ManagedBean
 @RequestScoped
 public class QuestionController {
+
     @EJB
-    private QuestionEJB questionEJB;        
-    private Question question;     
-    private List<Question> questionList; 
-    
+    private QuestionEJB questionEJB;
+    private Question question;
+    private List<Question> questionList;
+
     @EJB
     private AnswersEJB answerEJB;
     private Answer answer;
     private List<Answer> answerList;
-    
+
     @EJB
     private QuizEJB quizEJB;
     private Quiz quiz;
     private List<Quiz> quizList;
-    
-    public QuestionController () {
+
+    public QuestionController() {
         question = new Question();
         questionList = new ArrayList<Question>();
         answer = new Answer();
@@ -42,33 +44,28 @@ public class QuestionController {
         quiz = new Quiz();
         quizList = new ArrayList<Quiz>();
     }
-    
+
     @PostConstruct
-    public void init() 
-    {
+    public void init() {
+        Utility.checkSession();
         long quizId = getQuizId();
-        if (quizId > 0)
-        {
+        if (quizId > 0) {
             questionList = questionEJB.getQuestionsByQuizId(quizId);
-        }
-        else
-        {
+        } else {
             questionList = questionEJB.listQuestions();
         }
-        
+
         quizList = quizEJB.listQuiz();
     }
-    
-    public long getQuizId()
-    {
+
+    public long getQuizId() {
         String quizIdStr = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("quizId");
-        if (quizIdStr != null)
-        {
+        if (quizIdStr != null) {
             return Long.parseLong(quizIdStr);
         }
         return 0;
     }
-    
+
     public QuestionEJB getQuestionsEJB() {
         return questionEJB;
     }
@@ -92,7 +89,7 @@ public class QuestionController {
     public void setQuestionList(List<Question> questionList) {
         this.questionList = questionList;
     }
-    
+
     public AnswersEJB getAnswerEJB() {
         return answerEJB;
     }
@@ -100,7 +97,7 @@ public class QuestionController {
     public void setAnswerEJB(AnswersEJB answerEJB) {
         this.answerEJB = answerEJB;
     }
-    
+
     public Answer getAnswer() {
         return answer;
     }
@@ -108,7 +105,7 @@ public class QuestionController {
     public void setAnswer(Answer answer) {
         this.answer = answer;
     }
-    
+
     public List<Answer> getAnswerList() {
         return answerList;
     }
@@ -116,7 +113,7 @@ public class QuestionController {
     public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
     }
-    
+
     public QuizEJB getQuizEJB() {
         return quizEJB;
     }
@@ -124,7 +121,7 @@ public class QuestionController {
     public void setQuizEJB(QuizEJB quizEJB) {
         this.quizEJB = quizEJB;
     }
-    
+
     public Quiz getQuiz() {
         return quiz;
     }
@@ -132,7 +129,7 @@ public class QuestionController {
     public void setQuiz(Quiz quiz) {
         this.quiz = quiz;
     }
-    
+
     public List<Quiz> getQuizList() {
         return quizList;
     }
@@ -140,7 +137,7 @@ public class QuestionController {
     public void setQuizList(List<Quiz> quizList) {
         this.quizList = quizList;
     }
-    
+
     //method to create Question
     public String createQuestion(long quizId) {
         question = questionEJB.createQuestion(question);
@@ -149,33 +146,32 @@ public class QuestionController {
         FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully"));
         return "question.xhtml";
     }
-    
+
     // delete customer
     public String deleteAction(long id) {
         boolean success = questionEJB.delete(id);
         questionList = questionEJB.listQuestions();
-        if (success){
+        if (success) {
             FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Record deleted successfully"));
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Something went wrong. Please try again"));
         }
         return "question-list.xhtml";
     }
-    
+
     /// view products on customer
     public String addAction(long quizId) {
         question.setQuizId(quizId);
         return "question.xhtml?quizId" + quizId;
     }
-    
+
     /// view products on customer
     public String viewAction(long id) {
         question = questionEJB.getQuestionById(id);
         answerList = answerEJB.listAnswers(id);
         return "question.xhtml";
     }
-    
+
     //method to create Answer
     public String createAnswer(long questionId) {
         System.out.println("QuestionId = " + questionId);
@@ -186,21 +182,20 @@ public class QuestionController {
         question = questionEJB.getQuestionById(questionId);
         return "question.xhtml";
     }
-    
+
     // delete customer
     public String deleteAnswer(long id, long questionId) {
         answer.setQuestionId(questionId);
         boolean success = answerEJB.delete(id);
         answerList = answerEJB.listAnswers(questionId);
-        if (success){
+        if (success) {
             FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Record deleted successfully"));
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Something went wrong. Please try again"));
         }
         return "question.xhtml";
     }
-    
+
     /// view products on customer
     public String viewAnswer(long id) {
         answer = answerEJB.getAnswerById(id);

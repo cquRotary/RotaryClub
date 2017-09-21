@@ -1,43 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.RYDA.entities;
 
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-/**
- *
- * @author Kshav
- */
 @Entity
-@Table(name = "User")
 @NamedQueries({
-        @NamedQuery(name = "getAllUsers", query = "SELECT u FROM User u"),
-        @NamedQuery(name = "authenticateUser", query = "SELECT u FROM User u WHERE u.username = :user AND u.password = :pass"),
-        @NamedQuery(name = "getUserById", query = "SELECT u FROM User u WHERE u.id = :userId")
+        @NamedQuery(name = "getAllAppUsers", query = "SELECT u FROM AppUser u"),
+        @NamedQuery(name = "authenticateUser", query = "SELECT u FROM AppUser u WHERE u.username = :username AND u.password = :password"),
+        @NamedQuery(name = "getAppUserById", query = "SELECT u FROM AppUser u WHERE u.id = :userId"),
+        @NamedQuery(name = "getAppUserByUsername", query = "SELECT u FROM AppUser u WHERE u.username = :username")
 })
 
-public class User implements Serializable {
+public class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userId")
     private Long id;
     private String firstName;
     private String middleName;
@@ -47,6 +30,17 @@ public class User implements Serializable {
     private String email;
     private String phoneNumber;
      
+    public AppUser()
+    {
+        this.firstName = "";
+        this.middleName = "";
+        this.lastName = "";
+        this.username = "";
+        this.password = "";
+        this.email = "";
+        this.phoneNumber = "";
+    }
+    
     //accessorts and mutators
     public String getUsername() {
         return username;
@@ -110,9 +104,7 @@ public class User implements Serializable {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
-    }
-
-    
+    }   
 
     @Override
     public int hashCode() {
@@ -124,10 +116,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof AppUser)) {
             return false;
         }
-        User other = (User) object;
+        AppUser other = (AppUser) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
