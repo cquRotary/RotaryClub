@@ -7,67 +7,48 @@ package org.RYDA.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import org.RYDA.ejbs.UsersEJB;
-import org.RYDA.entities.Administrator;
-import org.RYDA.entities.Student;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import org.RYDA.ejbs.UserEJB;
 import org.RYDA.entities.User;
 
 /**
  *
  * @author Kshav
  */
+@ManagedBean
 @Named(value = "usersController")
 @RequestScoped
 public class UserController {
 
     @EJB
-    private UsersEJB userEJB;      
-    
-    private Administrator admin = new Administrator();      
-    private Student student = new Student();       
-    private User user = new User();               
-    private List<User> userList = new ArrayList<User>();      
-    private List<Administrator> adminList = new ArrayList<Administrator>();  
-    private List<Student> studentList = new ArrayList<Student>();      
-   
-        
-    public String addAdmin(){                  
-        admin = userEJB.createAdministrator(admin);
-        adminList = userEJB.listAdministrator();
-        return "usersList.xhtml";                 
-    }
-    
-    public String addStudent(){                      
-        student = userEJB.createStudent(student);
-        studentList = userEJB.listStudent();
-        return "userList.xhtml";                     
-    }
+    private UserEJB userEJB;      
+    private User user;
+    private List<User> userList;
 
-    public UsersEJB getUserEJB() {
+    public UserController() {
+        user = new User();
+        userList = new ArrayList<User>();
+    }
+    
+        
+    @PostConstruct
+    public void init() 
+    {
+        userList = userEJB.listUsers();
+    }
+    
+    public UserEJB getUserEJB() {
         return userEJB;
     }
 
-    public void setUserEJB(UsersEJB userEJB) {
+    public void setUserEJB(UserEJB userEJB) {
         this.userEJB = userEJB;
-    }
-
-    public Administrator getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Administrator admin) {
-        this.admin = admin;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
     }
 
     public User getUser() {
@@ -85,21 +66,32 @@ public class UserController {
     public void setUserList(List<User> userList) {
         this.userList = userList;
     }
-
-    public List<Administrator> getAdminList() {
-        return adminList;
+    
+    //method to create User
+    public String createUser() {
+        user = userEJB.createUser(user);
+        userList = userEJB.listUsers();
+        FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully"));
+        return "user-list.xhtml";
     }
-
-    public void setAdminList(List<Administrator> adminList) {
-        this.adminList = adminList;
+    
+    // delete user
+    public String deleteAction(long id) {
+        boolean success = userEJB.delete(id);
+        userList = userEJB.listUsers();
+        if (success){
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Record deleted successfully"));
+        }
+        else {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Something went wrong. Please try again"));
+        }
+        return "user-list.xhtml";
     }
-
-    public List<Student> getStudentList() {
-        return studentList;
-    }
-
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
+    
+    /// view details of user
+    public String viewAction(long id) {
+        user = userEJB.getUserById(id);
+        return "user-details.xhtml";
     }
     
     
