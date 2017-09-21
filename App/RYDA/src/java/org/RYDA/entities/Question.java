@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "listQuestions", query = "SELECT q FROM Question q"),
+    @NamedQuery(name = "getQuestionsByQuizId", query = "SELECT q FROM Question q WHERE q.quizId = :quizId"),
     @NamedQuery(name = "getQuestionById", query = "SELECT q FROM Question q WHERE q.id = :questionId")
 })
 public class Question implements Serializable {
@@ -33,6 +34,8 @@ public class Question implements Serializable {
     @Column(name = "questionId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "quizId")
+    private Long quizId;
     private String question;
     private String hint;
     @Temporal(TemporalType.TIMESTAMP)
@@ -52,6 +55,14 @@ public class Question implements Serializable {
         this.id = id;
     }
 
+    public Long getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(Long quizId) {
+        this.quizId = quizId;
+    }
+    
     public String getQuestion() {
         return question;
     }

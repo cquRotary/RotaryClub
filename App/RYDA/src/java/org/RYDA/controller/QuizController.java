@@ -7,6 +7,7 @@ package org.RYDA.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -30,13 +31,13 @@ public class QuizController {
         quiz = new Quiz();
         quizList = new ArrayList<Quiz>();
     }
-    
-    public String addQuiz(){                
-        quiz = quizEJB.createQuiz(quiz);            
-        quizList = quizEJB.listQuiz();
-        return "quizList.xhtml";            
-    }
 
+    @PostConstruct
+    public void init() 
+    {
+        quizList = quizEJB.listQuiz();
+    }
+    
     public QuizEJB getQuizEJB() {
         return quizEJB;
     }

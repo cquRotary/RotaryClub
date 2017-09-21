@@ -30,6 +30,12 @@ public class QuestionEJB {
         return query.getResultList();
     }
     
+    //method to query all the questions by quizId
+    public List<Question> getQuestionsByQuizId(long quizId){
+        TypedQuery<Question> query = em.createNamedQuery("getQuestionsByQuizId", Question.class).setParameter("quizId", quizId);
+        return query.getResultList();
+    }
+    
     //methods to delete question by id
     public boolean delete(long id) {
         question = em.find(Question.class, id);

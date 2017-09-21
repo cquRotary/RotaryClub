@@ -8,10 +8,13 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import org.RYDA.ejbs.AnswersEJB;
 import org.RYDA.ejbs.QuestionEJB;
+import org.RYDA.ejbs.QuizEJB;
 import org.RYDA.entities.Answer;
 import org.RYDA.entities.Question;
+import org.RYDA.entities.Quiz;
 
 @ManagedBean
 @RequestScoped
@@ -24,26 +27,48 @@ public class QuestionController {
     @EJB
     private AnswersEJB answerEJB;
     private Answer answer;
-    private List<Answer> answerList;    
+    private List<Answer> answerList;
+    
+    @EJB
+    private QuizEJB quizEJB;
+    private Quiz quiz;
+    private List<Quiz> quizList;
     
     public QuestionController () {
         question = new Question();
         questionList = new ArrayList<Question>();
         answer = new Answer();
         answerList = new ArrayList<Answer>();
+        quiz = new Quiz();
+        quizList = new ArrayList<Quiz>();
     }
     
     @PostConstruct
-    public void init() {
-        questionList = questionEJB.listQuestions();
+    public void init() 
+    {
+        long quizId = getQuizId();
+        if (quizId > 0)
+        {
+            questionList = questionEJB.getQuestionsByQuizId(quizId);
+        }
+        else
+        {
+            questionList = questionEJB.listQuestions();
+        }
+        
+        quizList = quizEJB.listQuiz();
     }
     
-    public String addQuestion(){    
-        question = questionEJB.createQuestion(question);            
-        questionList = questionEJB.listQuestions();
-        return "question-list.xhtml";            
+    public long getQuizId()
+    {
+        String quizIdStr = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("quizId");
+        if (quizIdStr != null)
+        {
+            return Long.parseLong(quizIdStr);
+        }
+        return 0;
     }
-
+    
     public QuestionEJB getQuestionsEJB() {
         return questionEJB;
     }
@@ -92,8 +117,32 @@ public class QuestionController {
         this.answerList = answerList;
     }
     
+    public QuizEJB getQuizEJB() {
+        return quizEJB;
+    }
+
+    public void setQuizEJB(QuizEJB quizEJB) {
+        this.quizEJB = quizEJB;
+    }
+    
+    public Quiz getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(Quiz quiz) {
+        this.quiz = quiz;
+    }
+    
+    public List<Quiz> getQuizList() {
+        return quizList;
+    }
+
+    public void setQuizList(List<Quiz> quizList) {
+        this.quizList = quizList;
+    }
+    
     //method to create Question
-    public String createQuestion() {
+    public String createQuestion(long quizId) {
         question = questionEJB.createQuestion(question);
         questionList = questionEJB.listQuestions();
         answerList = answerEJB.listAnswers(question.getId());
@@ -115,6 +164,12 @@ public class QuestionController {
     }
     
     /// view products on customer
+    public String addAction(long quizId) {
+        question.setQuizId(quizId);
+        return "question.xhtml?quizId" + quizId;
+    }
+    
+    /// view products on customer
     public String viewAction(long id) {
         question = questionEJB.getQuestionById(id);
         answerList = answerEJB.listAnswers(id);
@@ -127,7 +182,7 @@ public class QuestionController {
         answer.setQuestionId(questionId);
         answer = answerEJB.createAnswer(answer);
         answerList = answerEJB.listAnswers(questionId);
-        FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Save record added successfully" + questionId));
+        FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully" + questionId));
         question = questionEJB.getQuestionById(questionId);
         return "question.xhtml";
     }
