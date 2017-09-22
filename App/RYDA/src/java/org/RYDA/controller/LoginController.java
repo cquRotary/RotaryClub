@@ -88,15 +88,15 @@ public class LoginController {
         if (appUser.getId() != null) {
 //            sessionBean.setUsername(appUser.getUsername());
 //            String appUsername = sessionBean.getUsername();
-            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-            Map<String, Object> sessionMap = externalContext.getSessionMap();
-            sessionMap.put("username", appUser.getUsername());
+
+            Utility.writeSession("username", appUser.getUsername());
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
 
-            sessionMap.put("loginTime", dateFormat.format(date).toString());
-            String username = (String) sessionMap.get("username");
+            Utility.writeSession("loginTime", dateFormat.format(date).toString());
+
+            String username = (String) Utility.readSession("username");
 
             String accountName = appUser.getFirstName();
             if (!appUser.getMiddleName().isEmpty()) {
@@ -107,13 +107,13 @@ public class LoginController {
                 accountName += " ";
             }
             accountName += appUser.getLastName();
-            sessionMap.put("accountName", accountName);
+            Utility.writeSession("accountName", accountName);
 
             FacesContext.getCurrentInstance().addMessage("successForm:successInput",
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Success",
                             "Welcome to Administrator portal "
-                            + (String) sessionMap.get("accountName")));
+                            + (String) Utility.readSession("accountName")));
             Utility.RedirectUrl("index.xhtml");
             return "index.xhtml";
         }

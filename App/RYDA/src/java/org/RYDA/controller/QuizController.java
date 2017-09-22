@@ -29,6 +29,7 @@ public class QuizController {
     {
         quiz = new Quiz();
         quizList = new ArrayList<Quiz>();
+        quizEJB = new QuizEJB();
     }
 
     @PostConstruct

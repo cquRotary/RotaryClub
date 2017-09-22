@@ -12,10 +12,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.RYDA.entities.AppUser;
 
-/**
- *
- * @author Kshav
- */
 @Stateless
 public class AppUserEJB {
 

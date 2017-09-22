@@ -24,9 +24,7 @@ public class Utility {
     }
 
     public static String getUsername() {
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        Map<String, Object> sessionMap = externalContext.getSessionMap();
-        String username = (String) sessionMap.get("username");
+        String username = (String) readSession("username");
 
         if (username == null) {
             username = "";
@@ -35,9 +33,7 @@ public class Utility {
     }
 
     public static String getAccountName() {
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        Map<String, Object> sessionMap = externalContext.getSessionMap();
-        String accountName = (String) sessionMap.get("accountName");
+        String accountName = (String) readSession("accountName");
 
         if (accountName == null) {
             accountName = "";
@@ -46,9 +42,7 @@ public class Utility {
     }
 
     public static String getLoginTime() {
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        Map<String, Object> sessionMap = externalContext.getSessionMap();
-        String loginTime = (String) sessionMap.get("loginTime");
+        String loginTime = (String) readSession("loginTime");
 
         if (loginTime == null) {
             loginTime = "";
@@ -62,5 +56,19 @@ public class Utility {
         } catch (Exception e) {
 
         }
+    }
+    
+    public static void writeSession(String objectName, Object object)
+    {
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Map<String, Object> sessionMap = externalContext.getSessionMap();
+        sessionMap.put(objectName, object);
+    }
+    
+    public static Object readSession(String objectName)
+    {
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Map<String, Object> sessionMap = externalContext.getSessionMap();
+        return sessionMap.get(objectName);
     }
 }
