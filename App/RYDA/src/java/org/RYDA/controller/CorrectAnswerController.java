@@ -13,18 +13,22 @@ import javax.enterprise.context.RequestScoped;
 import org.RYDA.ejbs.CorrectAnswerEJB;
 import org.RYDA.entities.CorrectAnswer;
 
-/**
- *
- * @author Kshav
- */
 @Named(value = "correctAnswerController")
 @RequestScoped
 public class CorrectAnswerController {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     @EJB
     private CorrectAnswerEJB correctAnswerEJB;        
     private CorrectAnswer correctAnswer = new CorrectAnswer();     
     private List<CorrectAnswer> correctAnswersList = new ArrayList<CorrectAnswer>();        
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public String addCorrectAnswer(){                
         correctAnswer = correctAnswerEJB.createCorrectAnswer(correctAnswer);            
@@ -32,6 +36,10 @@ public class CorrectAnswerController {
         return "correctAnswerList.xhtml";            
     }
 
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+    
     public CorrectAnswerEJB getCorrectAnswerEJB() {
         return correctAnswerEJB;
     }
@@ -55,7 +63,4 @@ public class CorrectAnswerController {
     public void setCorrectAnswersList(List<CorrectAnswer> correctAnswersList) {
         this.correctAnswersList = correctAnswersList;
     }
-
-    
-    
 }

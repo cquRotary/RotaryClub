@@ -20,10 +20,18 @@ import org.RYDA.entities.Quiz;
 @RequestScoped
 public class QuizController {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     @EJB
     private QuizEJB quizEJB;        
     private Quiz quiz;     
     private List<Quiz> quizList;
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public QuizController()
     {
@@ -36,6 +44,10 @@ public class QuizController {
     {
         quizList = quizEJB.listQuiz();
     }
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
     
     public QuizEJB getQuizEJB() {
         return quizEJB;
@@ -69,7 +81,7 @@ public class QuizController {
         return "quiz-list.xhtml";
     }
     
-    // delete customer
+    //method to delete Quiz
     public String deleteAction(long id) {
         boolean success = quizEJB.delete(id);
         quizList = quizEJB.listQuiz();
@@ -82,7 +94,7 @@ public class QuizController {
         return "quiz-list.xhtml";
     }
     
-    /// view products on customer
+    //method to view Quiz detail
     public String viewAction(long id) {
         quiz = quizEJB.getQuizById(id);
         return "quiz-details.xhtml";

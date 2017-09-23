@@ -21,6 +21,10 @@ import org.RYDA.library.Utility;
 @RequestScoped
 public class QuestionController {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     @EJB
     private QuestionEJB questionEJB;
     private Question question;
@@ -36,6 +40,10 @@ public class QuestionController {
     private Quiz quiz;
     private List<Quiz> quizList;
 
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
+    
     public QuestionController() {
         question = new Question();
         questionList = new ArrayList<Question>();
@@ -66,6 +74,10 @@ public class QuestionController {
         return 0;
     }
 
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+    
     public QuestionEJB getQuestionsEJB() {
         return questionEJB;
     }
@@ -147,7 +159,7 @@ public class QuestionController {
         return "question.xhtml";
     }
 
-    // delete customer
+    //method to delete Question
     public String deleteAction(long id) {
         boolean success = questionEJB.delete(id);
         questionList = questionEJB.listQuestions();
@@ -159,7 +171,7 @@ public class QuestionController {
         return "question-list.xhtml";
     }
 
-    /// view products on customer
+    //Method to view question detail
     public String addAction(long quizId) {
         question.setQuizId(quizId);
         return "question.xhtml?quizId" + quizId;

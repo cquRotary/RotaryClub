@@ -12,22 +12,27 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.RYDA.entities.AppUser;
 
-/**
- *
- * @author Kshav
- */
 @Stateless
 public class AppUserEJB {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     @PersistenceContext(unitName = "RYDAPU")           
     private EntityManager em;   
     private AppUser appUser = new AppUser();
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public AppUser createAppUser(AppUser appUser){              
         em.persist(appUser);
         return appUser;
     }
     
+    //method to query list of users
     public List<AppUser> listAppUsers(){                    
         TypedQuery<AppUser> query = em.createNamedQuery("getAllAppUsers", AppUser.class);
         return query.getResultList();
@@ -55,12 +60,5 @@ public class AppUserEJB {
         catch (Exception e) {
             return new AppUser();
         }
-        
-//        List<AppUser> results = query.getResultList();
-//        if (results.isEmpty()) 
-//            return null;
-//        else if (results.size() == 1) 
-//            return results.get(0);
-//        return new AppUser();
     }
 }

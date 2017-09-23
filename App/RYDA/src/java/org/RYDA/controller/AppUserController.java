@@ -15,10 +15,18 @@ import org.RYDA.entities.AppUser;
 @RequestScoped
 public class AppUserController {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     @EJB
     private AppUserEJB appUserEJB;      
     private AppUser appUser;
     private List<AppUser> appUserList;
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public AppUserController() {
         appUser = new AppUser();
@@ -30,6 +38,10 @@ public class AppUserController {
     {
         appUserList = appUserEJB.listAppUsers();
     }
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
     
     public AppUserEJB getAppUserEJB() {
         return appUserEJB;

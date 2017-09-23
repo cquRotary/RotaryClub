@@ -22,10 +22,18 @@ import org.RYDA.library.Utility;
 @RequestScoped
 public class AttemptQuizController {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     @EJB
     private QuestionEJB questionEJB;
     private Question question;
     private List<Question> questionList;
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public AttemptQuizController() {
         question = new Question();
@@ -41,6 +49,10 @@ public class AttemptQuizController {
             questionList = questionEJB.listQuestions();
         }
     }
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
     
     public QuestionEJB getQuestionsEJB() {
         return questionEJB;

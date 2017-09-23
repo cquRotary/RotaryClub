@@ -20,6 +20,10 @@ import org.RYDA.library.Utility;
 @RequestScoped
 public class LoginController {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     @EJB
     private LoginEJB loginEJB;
     private AppUser appUser;
@@ -28,6 +32,10 @@ public class LoginController {
     @EJB
     private AppUserEJB appUserEJB;
 
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
+    
     public LoginController() {
         appUser = new AppUser();
     }
@@ -37,6 +45,10 @@ public class LoginController {
         createDefaultUser();
     }
 
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+    
     public LoginEJB getLoginEJB() {
         return loginEJB;
     }
@@ -81,13 +93,11 @@ public class LoginController {
         appUser = new AppUser();
     }
 
-    //method to create Quiz
+    //method to authenticate user with provided credential
     public String authenticateUser() {
         appUser = loginEJB.authenticateAppUser(appUser);
         long userId = appUser.getId();
         if (appUser.getId() != null) {
-//            sessionBean.setUsername(appUser.getUsername());
-//            String appUsername = sessionBean.getUsername();
             ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
             Map<String, Object> sessionMap = externalContext.getSessionMap();
             sessionMap.put("username", appUser.getUsername());

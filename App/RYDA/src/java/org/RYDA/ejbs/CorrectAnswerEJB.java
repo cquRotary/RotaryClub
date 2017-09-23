@@ -20,14 +20,23 @@ import org.RYDA.entities.CorrectAnswer;
 @Stateless
 public class CorrectAnswerEJB {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public CorrectAnswer createCorrectAnswer(CorrectAnswer correctAnswer){
         em.persist(correctAnswer);
         return correctAnswer;
     }
     
+    //method to query correct answer
     public List<CorrectAnswer> listCorrectAnswer(){
         TypedQuery<CorrectAnswer> query = em.createNamedQuery("correctAnswer", CorrectAnswer.class);
         return query.getResultList();

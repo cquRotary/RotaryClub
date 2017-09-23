@@ -18,10 +18,19 @@ import org.RYDA.entities.AppUser;
 @Stateless
 public class LoginEJB {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
     private AppUser user = new AppUser();
     
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
+    
+    //method to authenticate user
     public AppUser authenticateAppUser(AppUser user)
     {
         try

@@ -14,9 +14,18 @@ import org.RYDA.entities.Question;
 
 @Stateless
 public class QuestionEJB {
+    
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
     private Question question = new Question();
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     //Public methods    
     public Question createQuestion(Question question){

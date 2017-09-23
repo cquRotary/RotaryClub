@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+
+        <ui:composition template="template/common/commonLayout.xhtml">
+
+            <ui:param name="curFileName" value="Quiz"></ui:param>
+
+            <ui:define name="content">
+                <h2> Quiz Detail</h2>
+                <div>
+                    <ui:repeat value="#{appUserController.appUserList}" var="cus">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="ID"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.id}"/></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="First Name"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.firstName}"/></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="Middle Name"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.middleName}"/></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="Last Name"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.lastName}"/></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="Email"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.email}"/></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="Phone Number"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.phoneNumber}"/></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="ID"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.username}"/></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label class="col-md-3" ><h:outputText value="ID"/></label>
+                                <label class="col-md-5"><h:outputText value="#{appUserController.appUser.password}"/></label>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+
+</html>

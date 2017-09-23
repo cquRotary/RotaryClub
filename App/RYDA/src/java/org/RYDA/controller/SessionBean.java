@@ -15,7 +15,16 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class SessionBean {
+        
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     private String username;
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
     
     public String getUsername()
     {

@@ -15,15 +15,24 @@ import org.RYDA.entities.Answer;
 @Stateless
 public class AnswersEJB {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
     private Answer answer = new Answer();
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public Answer createAnswer(Answer answer){
         em.persist(answer);
         return answer;
     }
     
+    //method to query and list the answer by questionId
     public List<Answer> listAnswers(long questionId){
         TypedQuery<Answer> query = em.createNamedQuery("getAnswersByQuestionId", Answer.class).setParameter("questionId", questionId);
         return query.getResultList();

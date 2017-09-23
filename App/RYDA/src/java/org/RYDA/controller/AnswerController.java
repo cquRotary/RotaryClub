@@ -22,6 +22,10 @@ import org.RYDA.entities.Question;
 @RequestScoped
 public class AnswerController {
 
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     @EJB
     private AnswersEJB answerEJB;
     private Answer answer;     
@@ -32,6 +36,10 @@ public class AnswerController {
     private QuestionEJB questionEJB;
     private long questionId;
 
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
+    
     public AnswerController()
     {
         question = new Question();
@@ -43,6 +51,10 @@ public class AnswerController {
     public void init() {
         answerList = answerEJB.listAnswers(questionId);
     }
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
     
     public AnswersEJB getAnswerEJB() {
         return answerEJB;
@@ -98,7 +110,7 @@ public class AnswerController {
         return "question.xhtml";
     }
     
-    // delete customer
+    // Method to delete answer and redirect to question setup page
     public String deleteAction(long id, long questionId) {
         setQuestionId(questionId);
         answer.setQuestionId(questionId);
@@ -113,7 +125,7 @@ public class AnswerController {
         return "question.xhtml";
     }
     
-    /// view products on customer
+    /// view answer detail
     public String viewAction(long id) {
         answer = answerEJB.getAnswerById(id);
         return "answer-details.xhtml";

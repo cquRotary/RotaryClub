@@ -19,9 +19,17 @@ import org.RYDA.entities.Quiz;
 @Stateless
 public class QuizEJB {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     @PersistenceContext(unitName = "RYDAPU")
     private EntityManager em;
     private Quiz quiz = new Quiz();
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public Quiz createQuiz(Quiz quiz){
         em.persist(quiz);

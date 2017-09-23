@@ -9,9 +9,18 @@ import org.RYDA.library.Utility;
 @ManagedBean
 @RequestScoped
 public class DashboardController {
+    
+    // ======================================
+    // =             Attributes             =
+    // ======================================
+    
     private String loginUsername;
     private String loginAccountName;
     private String loginTime;
+    
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
     
     public DashboardController()
     {
@@ -24,6 +33,10 @@ public class DashboardController {
         this.loginAccountName = Utility.getAccountName();
         this.loginTime = Utility.getLoginTime();
     }
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
     
     public String getLoginUsername()
     {
