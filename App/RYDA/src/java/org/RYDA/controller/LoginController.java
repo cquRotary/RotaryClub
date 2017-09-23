@@ -20,10 +20,6 @@ import org.RYDA.library.Utility;
 @RequestScoped
 public class LoginController {
 
-    // ======================================
-    // =             Attributes             =
-    // ======================================
-    
     @EJB
     private LoginEJB loginEJB;
     private AppUser appUser;
@@ -32,10 +28,6 @@ public class LoginController {
     @EJB
     private AppUserEJB appUserEJB;
 
-    // ======================================
-    // =           Public Methods           =
-    // ======================================
-    
     public LoginController() {
         appUser = new AppUser();
     }
@@ -45,10 +37,6 @@ public class LoginController {
         createDefaultUser();
     }
 
-    // ======================================
-    // =          Getters & Setters         =
-    // ======================================
-    
     public LoginEJB getLoginEJB() {
         return loginEJB;
     }
@@ -93,20 +81,22 @@ public class LoginController {
         appUser = new AppUser();
     }
 
-    //method to authenticate user with provided credential
+    //method to create Quiz
     public String authenticateUser() {
         appUser = loginEJB.authenticateAppUser(appUser);
         long userId = appUser.getId();
         if (appUser.getId() != null) {
-            ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-            Map<String, Object> sessionMap = externalContext.getSessionMap();
-            sessionMap.put("username", appUser.getUsername());
+//            sessionBean.setUsername(appUser.getUsername());
+//            String appUsername = sessionBean.getUsername();
+
+            Utility.writeSession("username", appUser.getUsername());
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date();
 
-            sessionMap.put("loginTime", dateFormat.format(date).toString());
-            String username = (String) sessionMap.get("username");
+            Utility.writeSession("loginTime", dateFormat.format(date).toString());
+
+            String username = (String) Utility.readSession("username");
 
             String accountName = appUser.getFirstName();
             if (!appUser.getMiddleName().isEmpty()) {
@@ -117,13 +107,13 @@ public class LoginController {
                 accountName += " ";
             }
             accountName += appUser.getLastName();
-            sessionMap.put("accountName", accountName);
+            Utility.writeSession("accountName", accountName);
 
             FacesContext.getCurrentInstance().addMessage("successForm:successInput",
                     new FacesMessage(FacesMessage.SEVERITY_INFO,
                             "Success",
                             "Welcome to Administrator portal "
-                            + (String) sessionMap.get("accountName")));
+                            + (String) Utility.readSession("accountName")));
             Utility.RedirectUrl("index.xhtml");
             return "index.xhtml";
         }

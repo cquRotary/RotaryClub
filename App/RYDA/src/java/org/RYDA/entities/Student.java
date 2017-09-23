@@ -1,7 +1,6 @@
 package org.RYDA.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,41 +12,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "getAnswerByAnswerId", query ="SELECT a FROM Answer a WHERE a.id = :answerId"),
-    @NamedQuery(name = "getAnswersByQuestionId", query = "SELECT a FROM Answer a WHERE a.questionId = :questionId")
+    @NamedQuery(name = "getAllStudents", query = "SELECT s FROM Student s"),
+    @NamedQuery(name = "getStudentById", query = "SELECT s FROM Student s WHERE s.id = :studentId")
 })
-
-public class Answer implements Serializable {
+public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name = "answerId")
+    @Column(name = "studentId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "questionId")
-    private Long questionId;
-    private String answerOption;
-    private boolean isCorrect;
-    @Temporal(TemporalType.DATE)
-    private Date dateCreated;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "answerId", referencedColumnName = "answerId")
-    private List<StudentAnswer> studentAnswers;
+    private String name;
+    private String dateOfBirth;
+    private String email;
+    private String school;
     
-    public Answer()
-    {
-        
-    }
-    public Answer(String answerOption)
-    {
-        this.answerOption = answerOption;
-    }
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "studentId", referencedColumnName = "studentId")
+    private List<StudentAnswer> studentAnswers;
     
     public Long getId() {
         return id;
@@ -57,37 +42,37 @@ public class Answer implements Serializable {
         this.id = id;
     }
 
-    public Long getQuestionId() {
-        return questionId;
+    public String getName() {
+        return this.name;
     }
 
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
-    }
-
-    public String getAnswerOption() {
-        return answerOption;
-    }
-
-    public void setAnswerOption(String answerOption) {
-        this.answerOption = answerOption;
-    }
-
-    public boolean getIsCorrect() {
-        return isCorrect;
-    }
-
-    public void setIsCorrect(boolean isCorrect) {
-        this.isCorrect = isCorrect;
+    public void setName(String name) {
+        this.name = name;
     }
     
-    public Date getDateCreated() {
-        return dateCreated;
+    public String getDateOfBirth() {
+        return this.dateOfBirth;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }    
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+    
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getSchool() {
+        return this.school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
     
     public List<StudentAnswer> getStudentAnswers() {
         return this.studentAnswers;
@@ -107,10 +92,10 @@ public class Answer implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Answer)) {
+        if (!(object instanceof Student)) {
             return false;
         }
-        Answer other = (Answer) object;
+        Student other = (Student) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -119,7 +104,6 @@ public class Answer implements Serializable {
 
     @Override
     public String toString() {
-        return "org.RYDA.entities.Answers[ id=" + id + " ]";
+        return "org.RYDA.entities.Student[ id=" + id + " ]";
     }
-    
 }

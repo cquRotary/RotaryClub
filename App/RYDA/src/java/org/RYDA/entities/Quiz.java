@@ -13,12 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "Quiz")
 @NamedQueries({
     @NamedQuery(name = "getAllQuizzes", query = "SELECT q FROM Quiz q"),
     @NamedQuery(name = "getQuizById", query = "SELECT q FROM Quiz q WHERE q.id = :quizId")
@@ -37,7 +35,7 @@ public class Quiz implements Serializable {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "quizId", referencedColumnName = "quizId")
-    private List<Question> question;
+    private List<Question> questions;
     public Long getId() {
         return id;
     }
@@ -62,7 +60,14 @@ public class Quiz implements Serializable {
         this.dateCreated = dateCreated;
     }
     
-
+    public List<Question> getQuestions() {
+        return this.questions;
+    }
+    
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
