@@ -24,6 +24,10 @@ import javax.persistence.TemporalType;
 
 public class Answer implements Serializable {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "answerId")
@@ -40,6 +44,10 @@ public class Answer implements Serializable {
     @JoinColumn(name = "answerId", referencedColumnName = "answerId")
     private List<StudentAnswer> studentAnswers;
     
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
+    
     public Answer()
     {
         
@@ -48,6 +56,10 @@ public class Answer implements Serializable {
     {
         this.answerOption = answerOption;
     }
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
     
     public Long getId() {
         return id;

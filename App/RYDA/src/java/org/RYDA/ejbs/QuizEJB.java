@@ -36,6 +36,7 @@ public class QuizEJB {
         return quiz;
     }
     
+    //method to query list of quizzes
     public List<Quiz> listQuiz(){
         TypedQuery<Quiz> query = em.createNamedQuery("getAllQuizzes", Quiz.class);
         return query.getResultList();

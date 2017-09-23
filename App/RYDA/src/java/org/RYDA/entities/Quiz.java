@@ -24,6 +24,10 @@ import javax.persistence.TemporalType;
 
 public class Quiz implements Serializable {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,6 +40,11 @@ public class Quiz implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "quizId", referencedColumnName = "quizId")
     private List<Question> questions;
+    
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+    
     public Long getId() {
         return id;
     }

@@ -6,6 +6,11 @@ import javax.faces.context.FacesContext;
 
 public class Utility {
 
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
+    
+    //method to check valid session
     public static boolean isValidSession() {
         if (getUsername().isEmpty()) {
             return false;
@@ -13,6 +18,7 @@ public class Utility {
         return true;
     }
 
+    //method to check session
     public static void checkSession() {
         try {
             if (!Utility.isValidSession()) {
@@ -23,6 +29,7 @@ public class Utility {
         }
     }
 
+    //method to get Username
     public static String getUsername() {
         String username = (String) readSession("username");
 
@@ -32,6 +39,7 @@ public class Utility {
         return username;
     }
 
+    //method to get Account name
     public static String getAccountName() {
         String accountName = (String) readSession("accountName");
 
@@ -41,6 +49,7 @@ public class Utility {
         return accountName;
     }
 
+    //method to get Login time
     public static String getLoginTime() {
         String loginTime = (String) readSession("loginTime");
 
@@ -50,6 +59,7 @@ public class Utility {
         return loginTime;
     }
 
+    //method to redirect to next page
     public static void RedirectUrl(String url) {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(url);
@@ -58,6 +68,7 @@ public class Utility {
         }
     }
     
+    //method to write session
     public static void writeSession(String objectName, Object object)
     {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
@@ -65,6 +76,7 @@ public class Utility {
         sessionMap.put(objectName, object);
     }
     
+    //method to read session
     public static Object readSession(String objectName)
     {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();

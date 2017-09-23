@@ -26,6 +26,10 @@ import javax.persistence.Table;
 @NamedQuery(name = "getAllCorrectAnswers", query = "SELECT c FROM CorrectAnswer c where c.questionId = :qId")
 public class CorrectAnswer implements Serializable {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,6 +48,10 @@ public class CorrectAnswer implements Serializable {
     @JoinColumn(name = "ANSWERID", referencedColumnName = "ANSWERID", insertable = false, updatable = false)
     private Answer answer;
 
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+    
     public Long getId() {
         return id;
     }
