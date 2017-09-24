@@ -30,12 +30,12 @@
 
     </h:head>
     <body>
-        <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.questionList.size()}"></h:outputText>
+        <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.studentQuestionAnswerList.size()}"></h:outputText>
         <h:form>
-            <h:dataTable value="#{attemptQuizController.questionList}" var="question" border="1"  styleClass="table table-striped table-bordered">
+            <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
                 <h:column>
                     <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
-                    <h:selectOneRadio value="" id="itemInput" layout="pageDirection">
+                    <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection">
                         <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
                     </h:selectOneRadio>
                 </h:column>

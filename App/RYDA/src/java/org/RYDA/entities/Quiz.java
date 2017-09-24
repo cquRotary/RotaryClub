@@ -36,6 +36,20 @@ public class Quiz implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "quizId", referencedColumnName = "quizId")
     private List<Question> questions;
+    
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "quizId", referencedColumnName = "quizId")
+    private List<StudentQuiz> studentQuizList;
+
+    public Quiz() {
+    }
+
+    
+    public Quiz(String title) {
+        this.title = title;
+    }
+    
+    
     public Long getId() {
         return id;
     }
@@ -66,6 +80,14 @@ public class Quiz implements Serializable {
     
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+    
+    public List<StudentQuiz> getStudentQuizList() {
+        return this.studentQuizList;
+    }
+
+    public void setStudentQuizList(List<StudentQuiz> studentQuizList) {
+        this.studentQuizList = studentQuizList;
     }
     
     @Override

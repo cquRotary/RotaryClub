@@ -18,6 +18,11 @@ public class StudentAnswerEJB {
     public StudentAnswerEJB() {
     }
     
+    public StudentAnswer createStudentAnswer(StudentAnswer studentAnswer){              
+        em.persist(studentAnswer);
+        return studentAnswer;
+    }
+    
     public List<StudentAnswer> submitStudentAnswerList(List<StudentAnswer> studentAnswerList){              
         em.persist(studentAnswerList);
         return studentAnswerList;

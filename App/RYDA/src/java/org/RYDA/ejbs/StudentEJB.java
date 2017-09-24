@@ -1,9 +1,10 @@
 package org.RYDA.ejbs;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.RYDA.entities.AppUser;
+import javax.persistence.TypedQuery;
 import org.RYDA.entities.Student;
 
 @Stateless
@@ -19,5 +20,23 @@ public class StudentEJB {
     public Student createStudent(Student student){              
         em.persist(student);
         return student;
+    }
+    
+    public List<Student> getAllStudents()
+    {
+        TypedQuery<Student> query = em.createNamedQuery("getAllStudents", Student.class);
+        return query.getResultList();
+    }
+    
+    //methods quering the quiz by quiz id
+    public Student getStudentById(long id) {
+        TypedQuery<Student> query = em.createNamedQuery("getStudentById", Student.class).setParameter("studentId", id);
+        return query.getSingleResult();
+    }
+    
+    //methods quering the quiz by quiz id
+    public List<Student> getStudentsByQuizId(long quizId) {
+        TypedQuery<Student> query = em.createNamedQuery("getStudentsByQuizId", Student.class).setParameter("quizId", quizId);
+        return query.getResultList();
     }
 }

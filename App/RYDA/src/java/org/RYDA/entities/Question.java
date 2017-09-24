@@ -40,6 +40,18 @@ public class Question implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "questionId", referencedColumnName = "questionId")
     private List<Answer> answers;
+
+    public Question() {
+    }
+
+    
+    public Question(Long quizId, String question, String hint, Long userId) {
+        this.quizId = quizId;
+        this.question = question;
+        this.hint = hint;
+        this.userId = userId;
+    }
+    
     
     //accessors and mutators
     public Long getId() {

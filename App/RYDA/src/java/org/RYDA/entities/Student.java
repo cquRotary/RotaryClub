@@ -34,6 +34,10 @@ public class Student implements Serializable {
     @JoinColumn(name = "studentId", referencedColumnName = "studentId")
     private List<StudentAnswer> studentAnswers;
     
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "studentId", referencedColumnName = "studentId")
+    private List<StudentQuiz> studentQuizList;
+    
     public Long getId() {
         return id;
     }
@@ -80,6 +84,14 @@ public class Student implements Serializable {
 
     public void setStudentAnswers(List<StudentAnswer> studentAnswers) {
         this.studentAnswers = studentAnswers;
+    }
+    
+    public List<StudentQuiz> getStudentQuizList() {
+        return this.studentQuizList;
+    }
+
+    public void setStudentQuizList(List<StudentQuiz> studentQuizList) {
+        this.studentQuizList = studentQuizList;
     }
     
     @Override

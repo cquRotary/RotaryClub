@@ -5,11 +5,13 @@
  */
 package org.RYDA.ejbs;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import org.RYDA.entities.Question;
 import org.RYDA.entities.Quiz;
 
 /**
@@ -34,6 +36,26 @@ public class QuizEJB {
     public Quiz createQuiz(Quiz quiz){
         em.persist(quiz);
         return quiz;
+    }
+    
+    public void createAllQuizzes()
+    {
+        if (!listQuiz().isEmpty())
+            return;
+        List<Quiz> quizList = new ArrayList<>();
+        quiz = new Quiz("Quiz 1");
+        quizList.add(quiz);
+        
+        quiz = new Quiz("Quiz 2");
+        quizList.add(quiz);
+        
+        quiz = new Quiz("Quiz 3");
+        quizList.add(quiz);
+        
+        for (Quiz q : quizList)
+        {
+            createQuiz(q);
+        }
     }
     
     public List<Quiz> listQuiz(){

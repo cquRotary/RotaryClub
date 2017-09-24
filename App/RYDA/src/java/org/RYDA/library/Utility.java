@@ -71,4 +71,19 @@ public class Utility {
         Map<String, Object> sessionMap = externalContext.getSessionMap();
         return sessionMap.get(objectName);
     }
+    
+    public static String readQueryString(String param)
+    {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String val = params.get(param);
+        if (val == null)
+        {
+            return "0";
+        }
+        if (val.isEmpty())
+        {
+            return "0";
+        }
+        return val;
+    }
 }

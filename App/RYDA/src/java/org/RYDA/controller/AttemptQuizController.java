@@ -16,11 +16,14 @@ import org.RYDA.ejbs.QuestionEJB;
 import org.RYDA.ejbs.QuizEJB;
 import org.RYDA.ejbs.StudentAnswerEJB;
 import org.RYDA.ejbs.StudentEJB;
+import org.RYDA.ejbs.StudentQuizEJB;
 import org.RYDA.entities.Answer;
 import org.RYDA.entities.Question;
 import org.RYDA.entities.Quiz;
 import org.RYDA.entities.Student;
 import org.RYDA.entities.StudentAnswer;
+import org.RYDA.entities.StudentQuestionAnswer;
+import org.RYDA.entities.StudentQuiz;
 import org.RYDA.library.Utility;
 
 @ManagedBean
@@ -51,6 +54,11 @@ public class AttemptQuizController {
     private StudentAnswer studentAnswer;
     private List<StudentAnswer> studentAnswerList;
     
+    private List<StudentQuestionAnswer> studentQuestionAnswerList;
+    
+    @EJB
+    private StudentQuizEJB studentQuizEJB;
+    
     private long quizId;
 
     public AttemptQuizController() {
@@ -65,6 +73,8 @@ public class AttemptQuizController {
         quiz = new Quiz();
         quizList = new ArrayList<Quiz>();
         quizEJB = new QuizEJB();
+        
+        studentQuestionAnswerList = new ArrayList<>();
     }
 
     @PostConstruct
@@ -77,6 +87,14 @@ public class AttemptQuizController {
             {
                 answerList = answerEJB.listAnswers(q.getId());
                 q.setAnswers(answerList);
+                
+                StudentQuestionAnswer studentQuestionAnswer = new StudentQuestionAnswer();
+                studentQuestionAnswer.setId(q.getId());
+                studentQuestionAnswer.setQuestion(q.getQuestion());
+                studentQuestionAnswer.setHint(q.getHint());
+                studentQuestionAnswer.setStudentAnswerId(0);
+                studentQuestionAnswer.setAnswers(answerList);
+                studentQuestionAnswerList.add(studentQuestionAnswer);
             }
         } else {
             questionList = questionEJB.listQuestions();
@@ -84,6 +102,14 @@ public class AttemptQuizController {
             {
                 answerList = answerEJB.listAnswers(q.getId());
                 q.setAnswers(answerList);
+                
+                StudentQuestionAnswer studentQuestionAnswer = new StudentQuestionAnswer();
+                studentQuestionAnswer.setId(q.getId());
+                studentQuestionAnswer.setQuestion(q.getQuestion());
+                studentQuestionAnswer.setHint(q.getHint());
+                studentQuestionAnswer.setStudentAnswerId(0);
+                studentQuestionAnswer.setAnswers(answerList);
+                studentQuestionAnswerList.add(studentQuestionAnswer);
             }
         }
     }
@@ -112,14 +138,6 @@ public class AttemptQuizController {
         this.quizList = quizList;
     }
 
-    public QuestionEJB getQuestionEJB() {
-        return questionEJB;
-    }
-
-    public void setQuestionEJB(QuestionEJB questionEJB) {
-        this.questionEJB = questionEJB;
-    }
-
     public Question getQuestion() {
         return question;
     }
@@ -134,14 +152,6 @@ public class AttemptQuizController {
 
     public void setQuestionList(List<Question> questionList) {
         this.questionList = questionList;
-    }
-    
-    public AnswersEJB getAnswersEJB() {
-        return answerEJB;
-    }
-
-    public void setAnswersEJB(AnswersEJB answerEJB) {
-        this.answerEJB = answerEJB;
     }
 
     public Answer getAnswer() {
@@ -158,14 +168,6 @@ public class AttemptQuizController {
 
     public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
-    }
-    
-    public StudentEJB getStudentEJB() {
-        return studentEJB;
-    }
-
-    public void setStudentEJB(StudentEJB studentEJB) {
-        this.studentEJB = studentEJB;
     }
 
     public Student getStudent() {
@@ -184,14 +186,6 @@ public class AttemptQuizController {
         this.quizId = quizId;
     }
 
-    public StudentAnswerEJB getStudentAnswerEJB() {
-        return studentAnswerEJB;
-    }
-
-    public void setStudentAnswerEJB(StudentAnswerEJB studentAnswerEJB) {
-        this.studentAnswerEJB = studentAnswerEJB;
-    }
-
     public StudentAnswer getStudentAnswer() {
         return studentAnswer;
     }
@@ -208,6 +202,14 @@ public class AttemptQuizController {
         this.studentAnswerList = studentAnswerList;
     }
     
+    public List<StudentQuestionAnswer> getStudentQuestionAnswerList() {
+        return studentQuestionAnswerList;
+    }
+
+    public void setStudentQuestionAnswerList(List<StudentQuestionAnswer> studentQuestionAnswerList) {
+        this.studentQuestionAnswerList = studentQuestionAnswerList;
+    }
+    
     public long getQuizIdFromQueryString() {
         String quizIdStr = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("quizId");
         if (quizIdStr != null) {
@@ -222,10 +224,7 @@ public class AttemptQuizController {
         Student studentFromSession = (Student) Utility.readSession("student");
         String studentName = studentFromSession.getName();
 
-        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        String quizId = params.get("quizId");
-
-        String url = "attemptQuiz.xhtml?quizId" + quizId;
+        String url = "attemptQuiz.xhtml?quizId=" + Utility.readQueryString("quizId");
         //return "attemptQuiz.xhtml?quizId" + quizId;
 
         Utility.RedirectUrl(url);
@@ -234,15 +233,13 @@ public class AttemptQuizController {
     public void submitStudentAnswerList() {
         Student studentFromSession = (Student) Utility.readSession("student");
         student = studentEJB.createStudent(studentFromSession);
-        for (Question q : questionList)
-        {
-            for (Answer a : q.getAnswers())
-            {
-                studentAnswer.setStudentId(student.getId());
-                studentAnswer.setAnswerId(a.getId());
-            }
-            studentAnswerList.add(studentAnswer);
-        }
-        studentAnswerEJB.submitStudentAnswerList(studentAnswerList);
+        StudentQuiz studentQuiz = new StudentQuiz(studentFromSession.getId(), Long.parseLong(Utility.readQueryString("quizId")));
+        studentQuizEJB.createStudentQuiz(studentQuiz);
+//        for (StudentQuestionAnswer q : studentQuestionAnswerList)
+//        {
+//            studentAnswer.setStudentId(student.getId());
+//            studentAnswer.setAnswerId(q.getStudentAnswerId());
+//            studentAnswerEJB.createStudentAnswer(studentAnswer);
+//        }
     }
 }
