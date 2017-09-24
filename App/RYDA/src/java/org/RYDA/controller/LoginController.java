@@ -72,7 +72,7 @@ public class LoginController {
     //method to set default user
     private void createDefaultUser() {
         appUser = appUserEJB.getAppUserByUsername("admin");
-        if (appUser.getId() == null) {
+        if (appUser.getId() == 0) {
             appUser.setUsername("admin");
             appUser.setPassword("admin+123");
             appUser.setFirstName("Administrator");

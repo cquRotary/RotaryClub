@@ -96,7 +96,7 @@
                                                             <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection" disabled="true">
                                                                 <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
                                                             </h:selectOneRadio>
-                                                            
+                                                            <img style="width: 32px; height: 32px;" src="../images/#{question.correctAnswerId == question.studentAnswerId ? 'correct' : 'incorrect'}.png" />
                                                             <br/>
                                                             Correct Answer: #{question.correctAnswer}
                                                         </h:column>

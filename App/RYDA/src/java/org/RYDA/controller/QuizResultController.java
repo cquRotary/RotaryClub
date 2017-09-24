@@ -107,6 +107,7 @@ public class QuizResultController {
                 {
                     if (a.getIsCorrect())
                     {
+                        studentQuestionAnswer.setCorrectAnswerId(a.getId());
                         studentQuestionAnswer.setCorrectAnswer(a.getAnswerOption());
                     }
                     

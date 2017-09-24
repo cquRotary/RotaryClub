@@ -16,11 +16,11 @@
                 <h:form>
                     <h:dataTable value="#{studentResultController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
                         <h:column>
-                            <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
+                            <h:outputText value="#{attemptQuizController.questionList.indexOf(question) + 1}. #{question.question}" style="vertical-align: middle;"/>
                             <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection" disabled="true">
                                 <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
                             </h:selectOneRadio>
-                            
+                            <img style="width: 32px; height: 32px;" src="../images/#{question.correctAnswerId == question.studentAnswerId ? 'correct' : 'incorrect'}.png" />
                             <br/>
                             Correct Answer: #{question.correctAnswer}
                         </h:column>

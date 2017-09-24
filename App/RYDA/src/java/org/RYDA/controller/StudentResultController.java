@@ -102,6 +102,7 @@ public class StudentResultController {
                 {
                     if (a.getIsCorrect())
                     {
+                        studentQuestionAnswer.setCorrectAnswerId(a.getId());
                         studentQuestionAnswer.setCorrectAnswer(a.getAnswerOption());
                     }
                     
