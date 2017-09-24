@@ -24,6 +24,10 @@ import javax.persistence.TemporalType;
 })
 public class Question implements Serializable {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "questionId")
@@ -53,7 +57,10 @@ public class Question implements Serializable {
     }
     
     
-    //accessors and mutators
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+    
     public Long getId() {
         return id;
     }

@@ -18,6 +18,10 @@ import javax.persistence.NamedQuery;
 
 public class AppUser implements Serializable {
 
+    // ======================================
+    // =             Attribute             =
+    // ======================================
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +34,10 @@ public class AppUser implements Serializable {
     private String email;
     private String phoneNumber;
      
+    // ======================================
+    // =           Public Methods           =
+    // ======================================
+    
     public AppUser()
     {
         this.firstName = "";
@@ -41,7 +49,10 @@ public class AppUser implements Serializable {
         this.phoneNumber = "";
     }
     
-    //accessorts and mutators
+    // ======================================
+    // =          Getters & Setters         =
+    // ======================================
+    
     public String getUsername() {
         return username;
     }
