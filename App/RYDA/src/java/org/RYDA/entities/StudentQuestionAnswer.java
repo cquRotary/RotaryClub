@@ -11,6 +11,7 @@ package org.RYDA.entities;
  */
 public class StudentQuestionAnswer extends Question {
     private long studentAnswerId;
+    private String correctAnswer;
 
     /**
      * @return the studentAnswerId
@@ -24,6 +25,20 @@ public class StudentQuestionAnswer extends Question {
      */
     public void setStudentAnswerId(long studentAnswerId) {
         this.studentAnswerId = studentAnswerId;
+    }
+
+    /**
+     * @return the correctAnswer
+     */
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    /**
+     * @param correctAnswer the correctAnswer to set
+     */
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
     
 }

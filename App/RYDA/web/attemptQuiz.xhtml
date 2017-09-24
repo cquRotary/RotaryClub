@@ -1,46 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <f:facet name="first">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </f:facet>
-
-        <f:facet name="middle">
-            <h:outputStylesheet name="bootstrap/css/bootstrap.css" />
-
-            <h:outputStylesheet name="css/dashboard.css" />
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
-
-            <h:outputScript name="bootstrap/js/bootstrap.js" />
-        </f:facet>
-
-
-
-        <f:facet name="last">
-
-        </f:facet>
-
-    </h:head>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <title>Rotary Youth Driving Awareness</title>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic' rel='stylesheet' type='text/css'></link>
+        <link rel="stylesheet" href="css/bootstrap.css"></link>
+        <link rel="stylesheet" href="css/main.css"></link>
+        <script src="https://use.typekit.net/gri5tme.js"></script>
+        <script>try {
+                Typekit.load({async: true});
+            } catch (e) {
+            }</script>
+    </head>
     <body>
-        <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.studentQuestionAnswerList.size()}"></h:outputText>
         <h:form>
-            <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
-                <h:column>
-                    <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
-                    <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection">
-                        <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
-                    </h:selectOneRadio>
-                </h:column>
-            </h:dataTable>
-            <h:commandButton actionListener="#{attemptQuizController.submitStudentAnswerList}" value="Submit" styleClass="btn btn-default"/>
+            <div id="wrapper">
+                <div class="nav-drop">
+                    <a href="#" class="nav-opener"><span class="opener"></span></a>
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Quiz</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="social-araa">
+                        <ul class="social-networks list-inline">
+                            <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon icon-instagram"></i></a></li>
+                            <li><a href="#"><i class="icon icon-linkedin"></i></a></li>
+                            <li><a href="#"><i class="icon icon-google"></i></a></li>
+                        </ul>
+                        <span class="site-name"><a href="#">Rotary Youth Driving Awareness</a></span>
+                        <ul class="list list-unstyled">
+                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w1">
+                    <div class="top-container">
+                        <header id="header">
+                            <div class="logo-area">
+                                <strong class="logo">
+                                    <a href="#">
+                                        Rotary Youth Driving Awareness
+                                    </a>
+                                </strong>
+                                <!--<span class="link"><a href="#">RYDA</a></span>-->
+                            </div>
+                            <a href="#" class="nav-opener"><span class="opener"></span></a>
+                        </header>
+                        <div class="visual-area">
+                            <div class="image-holder">
+                                <span data-picture="data-picture" data-alt="image description">
+                                    <span data-src="images/img24.jpg" ></span>
+                                    <span data-src="images/img24-small.jpg" data-media="(max-width:767px)" ></span> <!-- retina 1x mobile -->
+                                    <span data-src="images/img24-small2x.jpg" data-media="(max-width:767px) and (-webkit-min-device-pixel-ratio:1.5), (max-width:767px) and (min-resolution:144dpi)" ></span>
+                                    <!--[if (lt IE 9) & (!IEMobile)]>
+                                            <span data-src="images/img4.jpg"></span>
+                                    <![endif]-->
+                                    <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
+                                    <noscript><img src="images/img4.jpg" alt="image description" ></img></noscript>
+                                </span>
+                            </div>
+                            <div class="visual-caption">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h1><ui:param name="curFileName" value="#{quizController.quiz.title}"></ui:param></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <main id="main" role="main">
+                        <section class="team-blocks-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="team-holder">
+                                            <article class="holder">
+                                                <div>
+                                                    <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.studentQuestionAnswerList.size()}"></h:outputText>
+
+                                                    <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
+                                                        <h:column>
+                                                            #{attemptQuizController.questionList.indexOf(question) + 1}. <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
+                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection">
+                                                                <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
+                                                            </h:selectOneRadio>
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                    <h:commandButton actionListener="#{attemptQuizController.submitStudentAnswerList}" value="Submit" styleClass="btn btn-danger"/>
+
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
         </h:form>
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.main.js"></script>
     </body>
 </html>

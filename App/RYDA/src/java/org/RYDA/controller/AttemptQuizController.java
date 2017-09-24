@@ -94,6 +94,13 @@ public class AttemptQuizController {
                 studentQuestionAnswer.setHint(q.getHint());
                 studentQuestionAnswer.setStudentAnswerId(0);
                 studentQuestionAnswer.setAnswers(answerList);
+                for (Answer a : answerList)
+                {
+                    if (a.getIsCorrect())
+                    {
+                        studentQuestionAnswer.setCorrectAnswer(a.getAnswerOption());
+                    }
+                }
                 studentQuestionAnswerList.add(studentQuestionAnswer);
             }
         } else {
@@ -220,6 +227,7 @@ public class AttemptQuizController {
 
     public void createStudent() {    
         Utility.writeSession("student", student);
+        Utility.writeSession("quizId", Utility.readQueryString("quizId"));
 
         Student studentFromSession = (Student) Utility.readSession("student");
         String studentName = studentFromSession.getName();
@@ -233,7 +241,8 @@ public class AttemptQuizController {
     public void submitStudentAnswerList() {
         Student studentFromSession = (Student) Utility.readSession("student");
         student = studentEJB.createStudent(studentFromSession);
-        StudentQuiz studentQuiz = new StudentQuiz(studentFromSession.getId(), Long.parseLong(Utility.readQueryString("quizId")));
+        String sessionQuizId = (String) Utility.readSession("quizId");
+        StudentQuiz studentQuiz = new StudentQuiz(studentFromSession.getId(), Long.parseLong(sessionQuizId));
         studentQuizEJB.createStudentQuiz(studentQuiz);
 //        for (StudentQuestionAnswer q : studentQuestionAnswerList)
 //        {
@@ -241,5 +250,8 @@ public class AttemptQuizController {
 //            studentAnswer.setAnswerId(q.getStudentAnswerId());
 //            studentAnswerEJB.createStudentAnswer(studentAnswer);
 //        }
+        
+        String url = "attemptResult.xhtml?quizId=" + sessionQuizId;
+        Utility.RedirectUrl(url);
     }
 }

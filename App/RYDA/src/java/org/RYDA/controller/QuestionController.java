@@ -53,23 +53,23 @@ public class QuestionController {
 
     @PostConstruct
     public void init() {
-        if (!quizEJB.listQuiz().isEmpty())
-        {
-            quizList = quizEJB.listQuiz();
-            for (Quiz q : quizList)
-            {
-                quizEJB.delete(q.getId());
-            }
-        }
-        
-        if (!questionEJB.listQuestions().isEmpty())
-        {
-            questionList = questionEJB.listQuestions();
-            for (Question q : questionList)
-            {
-                questionEJB.delete(q.getId());
-            }
-        }
+//        if (!quizEJB.listQuiz().isEmpty())
+//        {
+//            quizList = quizEJB.listQuiz();
+//            for (Quiz q : quizList)
+//            {
+//                quizEJB.delete(q.getId());
+//            }
+//        }
+//        
+//        if (!questionEJB.listQuestions().isEmpty())
+//        {
+//            questionList = questionEJB.listQuestions();
+//            for (Question q : questionList)
+//            {
+//                questionEJB.delete(q.getId());
+//            }
+//        }
         
         if (quizEJB.listQuiz().isEmpty()) {
             quizEJB.createAllQuizzes();

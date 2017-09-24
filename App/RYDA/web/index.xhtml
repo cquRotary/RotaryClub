@@ -130,10 +130,8 @@
                                                 <ul class="team-list list-unstyled">
                                                     <ui:repeat value="#{attemptQuizController.quizList}" var="quiz" class="team-list list-unstyled">
                                                         <li>
-                                                            <h:commandButton actionListener="#{attemptQuizController.createStudent}" value="Attempt" styleClass="btn btn-success">
+                                                            <h:commandLink actionListener="#{attemptQuizController.createStudent}">
                                                                 <f:param name="quizId" value="#{quiz.id}"/>
-                                                            </h:commandButton>
-                                                            <a>
                                                                 <div class="img-holder">
                                                                     <span data-picture="data-picture" data-alt="image description">
                                                                         <span data-src="images/img4.jpg" ></span>
@@ -148,6 +146,9 @@
                                                                 </div>
                                                                 <strong class="title"> #{quiz.title} </strong>
                                                                 <span class="find-more"><span class="text">#{quiz.title}</span></span>
+                                                            </h:commandLink>
+                                                            <a>
+                                                                
                                                             </a>
                                                         </li>
                                                     </ui:repeat>

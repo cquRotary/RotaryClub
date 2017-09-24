@@ -85,21 +85,22 @@
                                 <div class="col-xs-12">
                                     <div class="team-holder">
                                         <article class="holder">
+                                            <h1 class="text-center">Quiz Result:</h1>
                                             <div>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
-                                                <p>Question and quiz goes here</p>
+                                                <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.studentQuestionAnswerList.size()}"></h:outputText>
+                                                <h:form>
+                                                    <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
+                                                        <h:column>
+                                                            #{attemptQuizController.questionList.indexOf(question) + 1}. <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
+                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection">
+                                                                <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
+                                                            </h:selectOneRadio>
+                                                            
+                                                            <br/>
+                                                            Correct Answer: #{question.correctAnswer}
+                                                        </h:column>
+                                                    </h:dataTable>
+                                                </h:form>
                                             </div>
                                         </article>
                                     </div>
