@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="template/common/commonLayout.xhtml">
+            <ui:param name="curFileName" value="Report"></ui:param>
+            <ui:define name="content">
+                <div class="clear"></div>
+                <h1 class="text-center">Quiz Result:</h1>
+                <h1 class="text-center">#{studentResultController.numberOfCorrectAnswersByStudent}/#{studentResultController.studentQuestionAnswerList.size()}</h1>
+                <h:outputText styleClass="text-primary" value="No of Questions: #{studentResultController.studentQuestionAnswerList.size()}"></h:outputText>
+                <h:form>
+                    <h:dataTable value="#{studentResultController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
+                        <h:column>
+                            <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
+                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection" disabled="true">
+                                <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
+                            </h:selectOneRadio>
+                            
+                            <br/>
+                            Correct Answer: #{question.correctAnswer}
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

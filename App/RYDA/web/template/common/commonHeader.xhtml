@@ -12,9 +12,13 @@
             </div>
         </div>
         <div class="navbar-default sidebar">
-            <div class="text-left">Welcome #{dashboardController.loginAccountName} (#{dashboardController.loginUsername})</div>
-            <div class="text-left">Login Time: #{dashboardController.loginTime}</div>
-            <a class="mainLinks" style="cursor: pointer;">Logout</a>
+            <div style="margin-left: 10px;">
+                <h:form>
+                    <div class="text-left">Welcome #{dashboardController.loginAccountName} (#{dashboardController.loginUsername})</div>
+                    <div class="text-left">Login Time: #{dashboardController.loginTime}</div>
+                    <h:commandButton actionListener="#{dashboardController.logout}" value="Logout"></h:commandButton>
+                </h:form>
+            </div>
             <hr/>
             <nav>    
                 <ul class="nav in" id="side-menu">

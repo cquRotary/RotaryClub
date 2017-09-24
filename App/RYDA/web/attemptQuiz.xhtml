@@ -95,13 +95,15 @@
                                                     <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
                                                         <h:column>
                                                             #{attemptQuizController.questionList.indexOf(question) + 1}. <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
-                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection">
+                                 
+                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection" required="true" requiredMessage="Please choose one of the option">
                                                                 <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
                                                             </h:selectOneRadio>
+                                                            <h:message for="itemInput" style="color:red" />
+                                                            <span style="font-style: italic; color: green;">*Hint: #{question.hint}</span>
                                                         </h:column>
                                                     </h:dataTable>
                                                     <h:commandButton actionListener="#{attemptQuizController.submitStudentAnswerList}" value="Submit" styleClass="btn btn-danger"/>
-
                                                 </div>
                                             </article>
                                         </div>

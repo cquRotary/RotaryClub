@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "getAllQuizzes", query = "SELECT q FROM Quiz q"),
+    @NamedQuery(name = "getAllQuizzes", query = "SELECT q FROM Quiz q ORDER BY q.title"),
     @NamedQuery(name = "getQuizById", query = "SELECT q FROM Quiz q WHERE q.id = :quizId")
 })
 

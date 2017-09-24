@@ -62,7 +62,7 @@
                         
                         <h:column>
                             <f:facet name="header">Action</f:facet>
-                            <h:commandButton action="#{reportController.viewQuizAttempt(student.id)}" value="View Result" styleClass="btn btn-default"/>
+                            <a href="student-result.xhtml?studentId=#{student.id}&amp;quizId=#{reportController.quizId}" class="btn btn-default">View result</a>
                         </h:column>
                     </h:dataTable>
                 </h:form>

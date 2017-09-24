@@ -9,20 +9,6 @@
         <ui:composition template="template/common/commonLayout.xhtml">
             <ui:param name="curFileName" value="Report"></ui:param>
             <ui:define name="content">
-                <div class="panel-body" style="float:left;">
-                    <h:link outcome="question.xhtml" value="Add new" styleClass="btn btn-danger"/>
-                </div>
-                <h:form>
-                    <div class="col-md-4 search-form">
-                        <label>Search By Question: </label>
-                        <div class="input-group custom-search-form">
-                            <h:inputText binding="#{searchParam}" styleClass="form-control" />
-                            <span class="input-group-btn">
-                                <h:commandButton value="Search" action="#{questionController.searchQuestion(searchParam.value)}" styleClass="btn btn-danger"/>
-                            </span>
-                        </div>
-                    </div>
-                </h:form>
                 <div class="clear"></div>
                 <h:outputText class="text-uppercase" styleClass="text-primary" value="Result: "/>
                 <h:outputText styleClass="text-primary" value="#{reportController.quizAttemptResponseList.size()} record(s)"></h:outputText>

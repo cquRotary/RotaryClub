@@ -21,8 +21,8 @@
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Quiz</a></li>
+                            <li><a href="index.xhtml">Home</a></li>
+                            <li><a href="index.xhtml">Quiz</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -86,13 +86,14 @@
                                     <div class="team-holder">
                                         <article class="holder">
                                             <h1 class="text-center">Quiz Result:</h1>
+                                            <h1 class="text-center">You have got #{quizResultController.numberOfCorrectAnswersByStudent} answers correct out of #{quizResultController.studentQuestionAnswerList.size()}</h1>
                                             <div>
-                                                <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.studentQuestionAnswerList.size()}"></h:outputText>
+                                                <h:outputText styleClass="text-primary" value="No of Questions: #{quizResultController.studentQuestionAnswerList.size()}"></h:outputText>
                                                 <h:form>
-                                                    <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
+                                                    <h:dataTable value="#{quizResultController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
                                                         <h:column>
-                                                            #{attemptQuizController.questionList.indexOf(question) + 1}. <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
-                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection">
+                                                            #{quizResultController.questionList.indexOf(question) + 1}. <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
+                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection" disabled="true">
                                                                 <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
                                                             </h:selectOneRadio>
                                                             

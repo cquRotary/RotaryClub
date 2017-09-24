@@ -28,7 +28,7 @@ import org.RYDA.library.Utility;
 
 @ManagedBean
 @RequestScoped
-public class AttemptQuizController {
+public class QuizResultController {
 
     @EJB
     private QuestionEJB questionEJB;
@@ -62,8 +62,10 @@ public class AttemptQuizController {
     private StudentQuizEJB studentQuizEJB;
     
     private long quizId;
+    
+    private int numberOfCorrectAnswersByStudent = 0;
 
-    public AttemptQuizController() {
+    public QuizResultController() {
         question = new Question();
         questionList = new ArrayList<Question>();
 
@@ -83,30 +85,41 @@ public class AttemptQuizController {
     public void init() {
         quizList = quizEJB.listQuiz();
         long quizId = getQuizIdFromQueryString();
-        
         if (Utility.readSession("quizId") != null)
         {
             quizId = Long.parseLong((String) Utility.readSession("quizId"));
         }
-
+        
+        Student student = (Student) Utility.readSession("student");
+        studentAnswerList = studentAnswerEJB.getAnswersByStudentId(student.getId());
         if (quizId > 0) {
             questionList = questionEJB.getQuestionsByQuizId(quizId);
             for(Question q : questionList)
             {
                 answerList = answerEJB.listAnswers(q.getId());
                 q.setAnswers(answerList);
-                
                 StudentQuestionAnswer studentQuestionAnswer = new StudentQuestionAnswer();
                 studentQuestionAnswer.setId(q.getId());
                 studentQuestionAnswer.setQuestion(q.getQuestion());
                 studentQuestionAnswer.setHint(q.getHint());
-                studentQuestionAnswer.setStudentAnswerId(0);
                 studentQuestionAnswer.setAnswers(answerList);
                 for (Answer a : answerList)
                 {
                     if (a.getIsCorrect())
                     {
                         studentQuestionAnswer.setCorrectAnswer(a.getAnswerOption());
+                    }
+                    
+                    for (StudentAnswer sa : studentAnswerList)
+                    {
+                        if (a.getId() == sa.getAnswerId())
+                        {
+                            studentQuestionAnswer.setStudentAnswerId(sa.getAnswerId());
+                            if (a.getIsCorrect())
+                            {
+                                setNumberOfCorrectAnswersByStudent(getNumberOfCorrectAnswersByStudent() + 1);
+                            }
+                        }
                     }
                 }
                 studentQuestionAnswerList.add(studentQuestionAnswer);
@@ -127,14 +140,6 @@ public class AttemptQuizController {
                 studentQuestionAnswerList.add(studentQuestionAnswer);
             }
         }
-    }
-
-    public QuizEJB getQuizEJB() {
-        return quizEJB;
-    }
-
-    public void setQuizEJB(QuizEJB quizEJB) {
-        this.quizEJB = quizEJB;
     }
 
     public Quiz getQuiz() {
@@ -233,45 +238,6 @@ public class AttemptQuizController {
         return 0;
     }
 
-    public void createStudent() {    
-        Utility.writeSession("student", student);
-        Utility.writeSession("quizId", Utility.readQueryString("quizId"));
-
-        Student studentFromSession = (Student) Utility.readSession("student");
-        String studentName = studentFromSession.getName();
-
-        String url = "attemptQuiz.xhtml?quizId=" + Utility.readQueryString("quizId");
-        //return "attemptQuiz.xhtml?quizId" + quizId;
-
-        Utility.RedirectUrl(url);
-    }
-    
-    public void submitStudentAnswerList() {
-        Student studentFromSession = (Student) Utility.readSession("student");
-        student = studentEJB.createStudent(studentFromSession);
-        String sessionQuizId = (String) Utility.readSession("quizId");
-        StudentQuiz studentQuiz = new StudentQuiz(studentFromSession.getId(), Long.parseLong(sessionQuizId));
-        studentQuizEJB.createStudentQuiz(studentQuiz);
-//        for (Map.Entry<StudentQuestionAnswer, Long> entry : studentAnswers.entrySet())
-//        {
-//            StudentQuestionAnswer q = entry.getKey();
-//            long answerId = entry.getValue();
-//            studentAnswer.setStudentId(student.getId());
-//            studentAnswer.setAnswerId(answerId);
-//        }
-
-        for (StudentQuestionAnswer q : studentQuestionAnswerList)
-        {
-            studentAnswer = new StudentAnswer();
-            studentAnswer.setStudentId(student.getId());
-            studentAnswer.setAnswerId(q.getStudentAnswerId());
-            studentAnswerEJB.createStudentAnswer(studentAnswer);
-        }
-        
-        String url = "attemptResult.xhtml?quizId=" + sessionQuizId;
-        Utility.RedirectUrl(url);
-    }
-
     /**
      * @return the studentAnswers
      */
@@ -284,5 +250,19 @@ public class AttemptQuizController {
      */
     public void setStudentAnswers(Map<StudentQuestionAnswer, Long> studentAnswers) {
         this.studentAnswers = studentAnswers;
+    }
+
+    /**
+     * @return the numberOfCorrectAnswersByStudent
+     */
+    public int getNumberOfCorrectAnswersByStudent() {
+        return numberOfCorrectAnswersByStudent;
+    }
+
+    /**
+     * @param numberOfCorrectAnswersByStudent the numberOfCorrectAnswersByStudent to set
+     */
+    public void setNumberOfCorrectAnswersByStudent(int numberOfCorrectAnswersByStudent) {
+        this.numberOfCorrectAnswersByStudent = numberOfCorrectAnswersByStudent;
     }
 }

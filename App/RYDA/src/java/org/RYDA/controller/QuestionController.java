@@ -75,7 +75,7 @@ public class QuestionController {
             quizEJB.createAllQuizzes();
             quizList = quizEJB.listQuiz();
             for (Quiz q : quizList) {
-                question = new Question(q.getId(), "How to increase your own hazard perception skills?", "Awarness", Long.parseLong("1"));
+                question = new Question(q.getId(), "How to increase your own hazard perception skills?", "Awareness", Long.parseLong("1"));
                 questionEJB.createQuestion(question);
 
                 answer = new Answer(question.getId(), "Much more aware", true);
@@ -87,7 +87,7 @@ public class QuestionController {
                 answer = new Answer(question.getId(), "No change", false);
                 answerEJB.createAnswer(answer);
 
-                question = new Question(q.getId(), "How to reduce distractions in a car?", "Focus and Awarness", Long.parseLong("1"));
+                question = new Question(q.getId(), "How to reduce distractions in a car?", "Focus and Awareness", Long.parseLong("1"));
                 questionEJB.createQuestion(question);
 
                 answer = new Answer(question.getId(), "Much aware", false);

@@ -84,8 +84,9 @@ public class LoginController {
     //method to create Quiz
     public String authenticateUser() {
         appUser = loginEJB.authenticateAppUser(appUser);
+        
         long userId = appUser.getId();
-        if (appUser.getId() != null) {
+        if (appUser.getId() > 0) {
 //            sessionBean.setUsername(appUser.getUsername());
 //            String appUsername = sessionBean.getUsername();
 

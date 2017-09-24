@@ -38,6 +38,15 @@ public class Student implements Serializable {
     @JoinColumn(name = "studentId", referencedColumnName = "studentId")
     private List<StudentQuiz> studentQuizList;
     
+    public Student()
+    {
+        this.id = Long.parseLong("0");
+        this.name = "";
+        this.dateOfBirth = "";
+        this.email = "";
+        this.school = "";
+    }
+    
     public Long getId() {
         return id;
     }

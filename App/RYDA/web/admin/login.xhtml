@@ -34,10 +34,18 @@ and open the template in the editor.
 
     </h:head>
     <body>
+        <h:form id="successForm" styleClass="form-horizontal">
+            <div class="form-group" style="margin-left: 0px;">
+                <h:inputHidden value="" id="successInput"></h:inputHidden>
+                <h:message class="success col-md-12" for="successInput" id="successInputMessage" />
+                <h:inputHidden value="" id="errorInput"></h:inputHidden>
+                <h:message class="error errormsg col-md-12" for="errorInput" id="errorInputMessage" />
+            </div>
+        </h:form>
         <div style="margin-top: 50px; margin-left: 25%; margin-right: 25%; border: 1px solid gray;">
             <h:form styleClass="form-horizontal">
                 <div class="form-horizontal">
-                    <div class="bg-info form-control alert-info text-center">Login Panel</div>
+                    <div class="bg-success form-control alert-info text-center">Login Panel</div>
                 </div>
                 <div class="form-group">
                     <h:outputLabel value="Username (*) :" styleClass="control-label col-sm-2"/>

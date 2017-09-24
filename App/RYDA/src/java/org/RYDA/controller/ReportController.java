@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.RYDA.controller;
 
 import java.util.List;
@@ -15,6 +10,7 @@ import org.RYDA.ejbs.ReportEJB;
 import org.RYDA.ejbs.StudentEJB;
 import org.RYDA.entities.QuizAttemptResponse;
 import org.RYDA.entities.Student;
+import org.RYDA.library.Utility;
 
 @ManagedBean
 @RequestScoped
@@ -78,5 +74,11 @@ public class ReportController {
             return Long.parseLong(quizIdStr);
         }
         return 0;
+    }
+    
+    public void viewQuizAttempt(long studentId)
+    {
+        String url = "student-result.xhtml?quizId=" + getQuizId() + "&studentId=" + studentId;
+        Utility.RedirectUrl(url);
     }
 }

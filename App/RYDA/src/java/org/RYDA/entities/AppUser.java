@@ -40,6 +40,7 @@ public class AppUser implements Serializable {
     
     public AppUser()
     {
+        this.id = Long.parseLong("0");
         this.firstName = "";
         this.middleName = "";
         this.lastName = "";
