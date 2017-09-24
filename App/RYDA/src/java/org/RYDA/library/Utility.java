@@ -67,18 +67,16 @@ public class Utility {
 
         }
     }
-    
+
     //method to write session
-    public static void writeSession(String objectName, Object object)
-    {
+    public static void writeSession(String objectName, Object object) {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> sessionMap = externalContext.getSessionMap();
         sessionMap.put(objectName, object);
     }
-    
+
     //method to read session
-    public static Object readSession(String objectName)
-    {
+    public static Object readSession(String objectName) {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> sessionMap = externalContext.getSessionMap();
         return sessionMap.get(objectName);
