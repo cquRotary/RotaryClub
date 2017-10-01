@@ -30,6 +30,7 @@ public class Quiz implements Serializable {
     @Column(name = "quizId")
     private Long id;
     private String title;
+    private String quizOutcome;
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dateCreated;        
 
@@ -64,6 +65,14 @@ public class Quiz implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    public String getQuizOutcome() {
+        return quizOutcome;
+    }
+
+    public void setQuizOutcome(String quizOutcome) {
+        this.quizOutcome = quizOutcome;
     }
 
     public Calendar getDateCreated() {

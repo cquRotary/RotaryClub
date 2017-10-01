@@ -26,7 +26,7 @@
                         <div class="container-fluid">
                             <ul class="nav navbar-nav">
                                 <li><a href="index.xhtml">Home</a></li>
-                                <li><a href="#">Quiz</a></li>
+                                <li><a href="index.xhtml#secion2">Quiz</a></li>
                                 <li><a href="aboutUs.xhtml">About Us</a></li>
                                 <li><a href="contactUs.xhtml">Contact Us</a></li>
                             </ul>
@@ -58,24 +58,12 @@
                             </div>
                             <a href="#" class="nav-opener"><span class="opener"></span></a>
                         </header>
-                        <div class="visual-area">
-                            <div class="image-holder">
-                                <span data-picture="data-picture" data-alt="image description">
-                                    <span data-src="images/img24.jpg" ></span>
-                                    <span data-src="images/img24-small.jpg" data-media="(max-width:767px)" ></span> <!-- retina 1x mobile -->
-                                    <span data-src="images/img24-small2x.jpg" data-media="(max-width:767px) and (-webkit-min-device-pixel-ratio:1.5), (max-width:767px) and (min-resolution:144dpi)" ></span>
-                                    <!--[if (lt IE 9) & (!IEMobile)]>
-                                            <span data-src="images/img4.jpg"></span>
-                                    <![endif]-->
-                                    <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
-                                    <noscript><img src="images/img4.jpg" alt="image description" ></img></noscript>
-                                </span>
-                            </div>
+                        <div class="visual-area add">
                             <div class="visual-caption">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <h1><ui:param name="curFileName" value="#{quizController.quiz.title}"></ui:param></h1>
+                                            <h1>Privacy Policy</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -83,29 +71,32 @@
                         </div>
                     </div>
                     <main id="main" role="main">
-                        <section class="team-blocks-area">
+                        <section class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="content-area">
+                                        <p style="margin-top: 60px;">Rotary Club takes your privacy very seriously.</p>
+                                        <p style="margin-top: 20px;">This privacy policy applies for the collection, use, maintenance and disclosure of the information collected from the users. This privacy policy applies to the site <a href="http://www.rydaquiz.com" target="_blank">www.rydaquiz.com</a> and all the products and services offered on the site by Rotary Club.</p>
+                                        <p style="margin-top: 20px;">We are always committed towards the safeguarding of our users' privacy and security. This privacy statement is meant to explain what kind of personal information we actually collect about you. Along with this it also explains with whom we share this information with. Here, personal information refers to information such as name, email and date of birth that can be used in identifying an individual.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="joining-holder">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="team-holder">
-                                            <article class="holder">
-                                                <div>
-                                                    <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.studentQuestionAnswerList.size()}"></h:outputText>
-
-                                                    <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
-                                                        <h:column>
-                                                            #{attemptQuizController.questionList.indexOf(question) + 1}. <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
-                                 
-                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection" required="true" requiredMessage="Please choose one of the option">
-                                                                <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
-                                                            </h:selectOneRadio>
-                                                            <h:message for="itemInput" style="color:red" />
-                                                            <span style="font-style: italic; color: green;">*Hint: #{question.hint}</span>
-                                                        </h:column>
-                                                    </h:dataTable>
-                                                    <h:commandButton actionListener="#{attemptQuizController.submitStudentAnswerList}" value="Submit" styleClass="btn btn-danger"/>
-                                                </div>
-                                            </article>
+                                        <div class="joining-area">
+                                            <header class="heading-area">
+                                                <h2>We’re a social bunch</h2>
+                                                <ul class="social-networks list-inline">
+                                                    <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-instagram"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-linkedin"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-google"></i></a></li>
+                                                </ul>
+                                            </header>
                                         </div>
                                     </div>
                                 </div>

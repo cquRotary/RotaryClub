@@ -24,6 +24,16 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <h:outputLabel value="Quiz Outcome (*) :" styleClass="control-label col-sm-2"/>
+                                <div class="col-sm-5">
+                                    <h:inputTextarea value="#{quizController.quiz.quizOutcome}" id="quizOutcomeInput" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                    </h:inputTextarea>
+                                </div>
+                                <div class="col-sm-5">
+                                    <h:message for="quizInput" style="color:red" />
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <h:commandButton value="Save" action="#{quizController.createQuiz}" styleClass="btn btn-danger"/>
                             </div>
                         </h:form>
