@@ -16,7 +16,9 @@
                 <h:form>
                     <div class="text-left">Welcome #{dashboardController.loginAccountName} (#{dashboardController.loginUsername})</div>
                     <div class="text-left">Login Time: #{dashboardController.loginTime}</div>
-                    <h:commandButton actionListener="#{dashboardController.logout}" value="Logout"></h:commandButton>
+                    <h:commandLink actionListener="#{dashboardController.logout}">
+                        <img style="width: 32px; height: 32px;" src="../images/logout.png" title="Logout" />
+                    </h:commandLink>
                 </h:form>
             </div>
             <hr/>
