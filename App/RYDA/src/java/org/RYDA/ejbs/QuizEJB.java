@@ -75,4 +75,9 @@ public class QuizEJB {
         TypedQuery<Quiz> query = em.createNamedQuery("getQuizById", Quiz.class).setParameter("quizId", id);
         return query.getSingleResult();
     }
+    
+    public List<Quiz> searchQuiz(String title){
+        TypedQuery<Quiz> query = em.createNamedQuery("searchQuizByTitle", Quiz.class).setParameter("title", "%" + title + "%");
+        return query.getResultList();
+    }
 }

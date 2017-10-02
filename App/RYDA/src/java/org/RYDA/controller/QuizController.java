@@ -100,4 +100,14 @@ public class QuizController {
         quiz = quizEJB.getQuizById(id);
         return "quiz-details.xhtml";
     }
+    
+    public String searchQuiz(String title) {
+        quizList = quizEJB.searchQuiz(title);
+        if (quizList.size() <= 0) {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No results Found"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", " " + quizList.size() + " record(s) found"));
+        }
+        return "quiz-list.xhtml";
+    }
 }

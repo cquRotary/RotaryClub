@@ -20,7 +20,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "listQuestions", query = "SELECT q FROM Question q"),
     @NamedQuery(name = "getQuestionsByQuizId", query = "SELECT q FROM Question q WHERE q.quizId = :quizId"),
-    @NamedQuery(name = "getQuestionById", query = "SELECT q FROM Question q WHERE q.id = :questionId")
+    @NamedQuery(name = "getQuestionById", query = "SELECT q FROM Question q WHERE q.id = :questionId"),
+    @NamedQuery(name = "searchQuestionByQuestion", query = "SELECT q FROM Question q WHERE LOWER(q.question) LIKE LOWER(CONCAT(:question, '%'))")
 })
 public class Question implements Serializable {
 

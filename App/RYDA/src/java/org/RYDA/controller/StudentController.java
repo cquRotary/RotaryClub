@@ -10,7 +10,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import org.RYDA.ejbs.StudentEJB;
 import org.RYDA.entities.Student;
 
@@ -76,5 +78,15 @@ public class StudentController {
     public String viewQuizAttempt(long id) {
         student = studentEJB.getStudentById(id);
         return "student-details.xhtml";
+    }
+    
+    public String searchStudent(String name) {
+        studentList = studentEJB.searchStudent(name);
+        if (studentList.size() <= 0) {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No results Found"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", " " + studentList.size() + " record(s) found"));
+        }
+        return "student-list.xhtml";
     }
 }

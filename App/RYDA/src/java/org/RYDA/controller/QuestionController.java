@@ -593,4 +593,14 @@ public class QuestionController {
         answer = answerEJB.getAnswerById(id);
         return "answer-details.xhtml";
     }
+    
+    public String searchQuestion(String question) {
+        questionList = questionEJB.searchQuestion(question);
+        if (questionList.size() <= 0) {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No results Found"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", " " + questionList.size() + " record(s) found"));
+        }
+        return "question-list.xhtml";
+    }
 }
