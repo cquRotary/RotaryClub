@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,6 +32,7 @@ public class Quiz implements Serializable {
     @Column(name = "quizId")
     private Long id;
     private String title;
+    @Lob
     private String quizOutcome;
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dateCreated;        

@@ -34,7 +34,13 @@ public class QuizEJB {
     // ======================================
     
     public Quiz createQuiz(Quiz quiz){
-        em.persist(quiz);
+        if (quiz.getId() != null)
+        {
+            em.merge(quiz);
+        }
+        else{
+            em.persist(quiz);
+        }
         return quiz;
     }
     

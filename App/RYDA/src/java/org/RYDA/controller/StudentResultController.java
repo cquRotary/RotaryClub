@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -60,10 +61,12 @@ public class StudentResultController {
     
     @EJB
     private StudentQuizEJB studentQuizEJB;
+    private StudentQuiz studentQuiz;
     
     private long quizId;
     
     private int numberOfCorrectAnswersByStudent = 0;
+    private String timeTaken;
 
     public StudentResultController() {
         question = new Question();
@@ -88,6 +91,20 @@ public class StudentResultController {
         
         studentAnswerList = studentAnswerEJB.getAnswersByStudentId(Long.parseLong(Utility.readQueryString("studentId")));
         if (quizId > 0) {
+            setStudentQuiz(studentQuizEJB.getStudentQuiz(Long.parseLong(Utility.readQueryString("studentId")), quizId));
+            long timeTakenToCompleteQuiz = TimeUnit.MILLISECONDS.toSeconds(getStudentQuiz().getQuizCompletedDate().getTime() - getStudentQuiz().getQuizStartDate().getTime());
+            long seconds = 0;
+            long minutes = 0;
+            if (timeTakenToCompleteQuiz <= 60)
+            {
+                setTimeTaken(timeTakenToCompleteQuiz + " seconds");
+            }
+            else
+            {
+                minutes = timeTakenToCompleteQuiz % 60;
+                seconds = timeTakenToCompleteQuiz - (minutes * 60);
+                setTimeTaken(minutes + " minute(s) " + seconds + " seconds");
+            }
             questionList = questionEJB.getQuestionsByQuizId(quizId);
             for(Question q : questionList)
             {
@@ -260,5 +277,33 @@ public class StudentResultController {
      */
     public void setNumberOfCorrectAnswersByStudent(int numberOfCorrectAnswersByStudent) {
         this.numberOfCorrectAnswersByStudent = numberOfCorrectAnswersByStudent;
+    }
+
+    /**
+     * @return the studentQuiz
+     */
+    public StudentQuiz getStudentQuiz() {
+        return studentQuiz;
+    }
+
+    /**
+     * @param studentQuiz the studentQuiz to set
+     */
+    public void setStudentQuiz(StudentQuiz studentQuiz) {
+        this.studentQuiz = studentQuiz;
+    }
+
+    /**
+     * @return the timeTaken
+     */
+    public String getTimeTaken() {
+        return timeTaken;
+    }
+
+    /**
+     * @param timeTaken the timeTaken to set
+     */
+    public void setTimeTaken(String timeTaken) {
+        this.timeTaken = timeTaken;
     }
 }

@@ -98,7 +98,7 @@ public class QuizController {
     //method to view Quiz detail
     public String viewAction(long id) {
         quiz = quizEJB.getQuizById(id);
-        return "quiz-details.xhtml";
+        return "quiz.xhtml";
     }
     
     public String searchQuiz(String title) {

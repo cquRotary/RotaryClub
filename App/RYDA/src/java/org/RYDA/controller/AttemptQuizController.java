@@ -1,6 +1,7 @@
 package org.RYDA.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +91,7 @@ public class AttemptQuizController {
         }
 
         if (quizId > 0) {
+            quiz = quizEJB.getQuizById(quizId);
             questionList = questionEJB.getQuestionsByQuizId(quizId);
             for(Question q : questionList)
             {
@@ -240,17 +242,26 @@ public class AttemptQuizController {
         Student studentFromSession = (Student) Utility.readSession("student");
         String studentName = studentFromSession.getName();
 
-        String url = "attemptQuiz.xhtml?quizId=" + Utility.readQueryString("quizId");
+        String url = "quizOutcome.xhtml";
         //return "attemptQuiz.xhtml?quizId" + quizId;
 
         Utility.RedirectUrl(url);
+    }
+    
+    public void proceedToAttemptQuiz()
+    {
+        Date d = new Date();
+        Utility.writeSession("quizStartDate", d);
+        Utility.RedirectUrl("attemptQuiz.xhtml");
     }
     
     public void submitStudentAnswerList() {
         Student studentFromSession = (Student) Utility.readSession("student");
         student = studentEJB.createStudent(studentFromSession);
         String sessionQuizId = (String) Utility.readSession("quizId");
-        StudentQuiz studentQuiz = new StudentQuiz(studentFromSession.getId(), Long.parseLong(sessionQuizId));
+        Date quizStartDate = (Date) Utility.readSession("quizStartDate");
+        Date quizCompletedDate = new Date();
+        StudentQuiz studentQuiz = new StudentQuiz(studentFromSession.getId(), Long.parseLong(sessionQuizId), quizStartDate, quizCompletedDate);
         studentQuizEJB.createStudentQuiz(studentQuiz);
 //        for (Map.Entry<StudentQuestionAnswer, Long> entry : studentAnswers.entrySet())
 //        {

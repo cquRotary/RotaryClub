@@ -30,4 +30,10 @@ public class StudentQuizEJB {
         TypedQuery<Student> query = em.createNamedQuery("searchStudentByName", Student.class).setParameter("name", "%" + name + "%");
         return query.getResultList();
     }
+    
+    public StudentQuiz getStudentQuiz(long studentId, long quizId)
+    {
+        TypedQuery<StudentQuiz> query = em.createNamedQuery("getStudentQuiz", StudentQuiz.class).setParameter("studentId", studentId).setParameter("quizId", quizId);
+        return query.getSingleResult();
+    }
 }
