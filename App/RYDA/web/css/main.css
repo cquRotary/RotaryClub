@@ -157,7 +157,7 @@ transition: all .3s;
 
 .btn {
 width: 300px;
-height: 60px;
+height: 80px;
 font-size: 18px;
 line-height: 22px;
 font-weight: 600;
@@ -996,8 +996,8 @@ left: 0;
 top: 0;
 -webkit-transition: .7s cubic-bezier(.825, 0, .5, 1);
 transition: .7s cubic-bezier(.825, 0, .5, 1);
-width: 192px;
-height: 38px;
+width: 85px;
+height: 80px;
 display: block;
 color: orange;
 }
@@ -2910,7 +2910,7 @@ margin: 0;
 font-size: 13px;
 line-height: 16px;
 width: 218px;
-height: 46px;
+height: 60px;
 padding: 12px 5px 5px;
 	}
 
@@ -3090,7 +3090,7 @@ height: 29px;
 
 	.logo a,
 .logo img {
-width: 145px;
+width: 45px;
 height: 29px;
 	}
 
