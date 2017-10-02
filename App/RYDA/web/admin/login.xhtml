@@ -64,8 +64,8 @@ and open the template in the editor.
                                                         Password
                                                     </td>
                                                     <td class="col-md-5" style="padding: 5px;">
-                                                        <h:inputText value="#{loginController.appUser.password}" id="passwordInput" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
-                                                        </h:inputText>
+                                                        <h:inputSecret value="#{loginController.appUser.password}" id="passwordInput" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
+                                                        </h:inputSecret>
                                                         <h:message for="usernameInput" style="color:red"/>
                                                     </td>
                                                 </tr>

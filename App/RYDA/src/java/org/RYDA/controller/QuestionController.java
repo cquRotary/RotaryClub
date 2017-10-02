@@ -445,6 +445,13 @@ public class QuestionController {
         }
 
         quizList = quizEJB.listQuiz();
+        if (Utility.readSession("questionId") == null)
+        {
+            
+        }
+        else{
+            answerList = answerEJB.listAnswers((Long) Utility.readSession("questionId"));
+        }
     }
 
     public long getQuizId() {
@@ -535,6 +542,7 @@ public class QuestionController {
         question = questionEJB.createQuestion(question);
         questionList = questionEJB.listQuestions();
         answerList = answerEJB.listAnswers(question.getId());
+        Utility.writeSession("questionId", question.getId());
         FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully"));
         return "question.xhtml";
     }
@@ -561,6 +569,7 @@ public class QuestionController {
     public String viewAction(long id) {
         question = questionEJB.getQuestionById(id);
         answerList = answerEJB.listAnswers(id);
+        Utility.writeSession("questionId", id);
         return "question.xhtml";
     }
 
@@ -572,14 +581,15 @@ public class QuestionController {
         answerList = answerEJB.listAnswers(questionId);
         FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully" + questionId));
         question = questionEJB.getQuestionById(questionId);
+        Utility.writeSession("questionId", questionId);
         return "question.xhtml";
     }
 
-    // delete customer
-    public String deleteAnswer(long id, long questionId) {
-        answer.setQuestionId(questionId);
+    // delete answer
+    public String deleteAnswer(long id) {
+        answer = answerEJB.getAnswerById(id);
         boolean success = answerEJB.delete(id);
-        answerList = answerEJB.listAnswers(questionId);
+        answerList = answerEJB.listAnswers(answer.getQuestionId());
         if (success) {
             FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "Record deleted successfully"));
         } else {
@@ -588,7 +598,7 @@ public class QuestionController {
         return "question.xhtml";
     }
 
-    /// view products on customer
+    /// view answer
     public String viewAnswer(long id) {
         answer = answerEJB.getAnswerById(id);
         return "answer-details.xhtml";

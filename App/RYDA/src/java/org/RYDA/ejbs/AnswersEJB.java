@@ -47,7 +47,7 @@ public class AnswersEJB {
 
     //methods quering the question by question id
     public Answer getAnswerById(long id) {
-        TypedQuery<Answer> query = em.createNamedQuery("getAnswerById", Answer.class).setParameter("answerId", id);
+        TypedQuery<Answer> query = em.createNamedQuery("getAnswerByAnswerId", Answer.class).setParameter("answerId", id);
         return query.getSingleResult();
     }
 }

@@ -12,19 +12,19 @@
             <ui:define name="content">
                 <div class="row">
                     <div class="col-xs-12 col-md-12 col-sm-12">
-                        <h:form styleClass="form-horizontal">
+                        <h:form id="form1" styleClass="form-horizontal">
                             <div class="form-group">
                                 <h:outputLabel value="Quiz (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
                                     <h:selectOneMenu value="#{questionController.question.quizId}" id="quizIdInput" styleClass="form-control" required="true" requiredMessage="Required field is missing!">
                                         <f:selectItems value="#{questionController.quizList}" var="quiz" itemValue="#{quiz.id}" itemLabel="#{quiz.title}" />
-                                     </h:selectOneMenu>
+                                    </h:selectOneMenu>
                                 </div>
                                 <div class="col-sm-5">
                                     <h:message for="quizIdInput" style="color:red" />
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <h:outputLabel value="Question (*) :" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
@@ -53,8 +53,8 @@
                                 </div>
                             </div>
                         </h:form>
-                        
-                        <h:form styleClass="form-horizontal">
+
+                        <h:form id="form2" styleClass="form-horizontal">
                             <div class="form-group">
                                 <h:outputLabel value="Answers:" styleClass="control-label col-sm-2"/>
                                 <div class="col-sm-5">
@@ -76,7 +76,6 @@
                                 </div>
                             </div>
                         </h:form>
-                        
                         <h:form>
                             <h:dataTable value="#{questionController.answerList}" var="answer" border="1"  styleClass="table table-striped table-bordered">
                                 <h:column>
@@ -88,15 +87,14 @@
 
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Is Correct"/>
+                                        <h:outputText value="Is Correct?"/>
                                     </f:facet>
                                     <h:outputText value="#{answer.isCorrect}"/>
                                 </h:column>
 
                                 <h:column>
                                     <f:facet name="header">Action</f:facet>
-                                    <h:commandButton action="#{questionController.viewAnswer(answer.id)}" value="View" styleClass="btn btn-default"/>
-                                    <h:commandButton action="#{questionController.deleteAnswer(answer.id, answer.id)}" value="Delete" styleClass="btn btn-default"/>
+                                    <h:commandButton action="#{questionController.deleteAnswer(answer.id)}" value="Delete" styleClass="btn btn-default"/>
                                 </h:column>
                             </h:dataTable>
                         </h:form>

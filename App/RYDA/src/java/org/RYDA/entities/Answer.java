@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "getAnswerByAnswerId", query ="SELECT a FROM Answer a WHERE a.id = :answerId"),
-    @NamedQuery(name = "getAnswersByQuestionId", query = "SELECT a FROM Answer a WHERE a.questionId = :questionId")
+    @NamedQuery(name = "getAnswersByQuestionId", query = "SELECT a FROM Answer a WHERE a.questionId = :questionId"),
 })
 
 public class Answer implements Serializable {
