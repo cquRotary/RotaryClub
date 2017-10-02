@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <title>Rotary Youth Driving Awareness</title>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,400italic' rel='stylesheet' type='text/css'></link>
+        <link rel="stylesheet" href="css/bootstrap.css"></link>
+        <link rel="stylesheet" href="css/main.css"></link>
+        <script src="https://use.typekit.net/gri5tme.js"></script>
+        <script>try {
+                Typekit.load({async: true});
+            } catch (e) {
+            }</script>
+    </head>
+    <body>
+        <h:form>
+            <div id="wrapper">
+                <div class="nav-drop">
+                    <a href="#" class="nav-opener"><span class="opener"></span></a>
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.xhtml">Home</a></li>
+                                <li><a href="#">Quiz</a></li>
+                                <li><a href="aboutUs.xhtml">About Us</a></li>
+                                <li><a href="contactUs.xhtml">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="social-araa">
+                        <ul class="social-networks list-inline">
+                            <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+                            <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+                            <li><a href="#"><i class="icon icon-instagram"></i></a></li>
+                            <li><a href="#"><i class="icon icon-linkedin"></i></a></li>
+                            <li><a href="#"><i class="icon icon-google"></i></a></li>
+                        </ul>
+                        <span class="site-name"><a href="index.xhtml">Rotary Youth Driving Awareness</a></span>
+                        <ul class="list list-unstyled">
+                            <li><a href="privacyPolicy.xhtml">Privacy Policy</a></li>
+                            <li><a href="copyright.xhtml">Copyright</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="w1">
+                    <div class="top-container">
+                        <header id="header">
+                            <div class="logo-area">
+                                <strong class="logo">
+                                    <a href="index.xhtml">Rotary Youth Driving Awareness</a>
+                                </strong>
+                                <!--<span class="link"><a href="#">RYDA</a></span>-->
+                            </div>
+                            <a href="#" class="nav-opener"><span class="opener"></span></a>
+                        </header>
+                        <div class="visual-area add">
+                            <div class="visual-caption">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h1>Get in touch!</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <main id="main" role="main">
+                        <section class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="content-area">
+                                        <form action="#" class="form-area">
+                                            <div class="text-area">
+                                                <h2>Contact Us</h2>
+                                            </div>
+                                            <div class="fields-area">
+                                                <div class="row-holder add">
+                                                    <div class="field-holder">
+                                                        <h:outputLabel value="First name (*):"/>
+                                                        <h:inputText value="#{contactUsController.contactUs.firstName}" id="firstNameInput" class="form-control" required="true" requiredMessage="Required field is missing!"></h:inputText>
+                                                    </div>
+                                                    <div class="field-holder">
+                                                        <h:outputLabel value="Last name (*):"/>
+                                                        <h:inputText value="#{contactUsController.contactUs.lastName}" id="lastNameInput" class="form-control" required="true" requiredMessage="Required field is missing!"></h:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="row-holder">
+                                                    <div class="field-holder">
+                                                        <h:outputLabel value="Email (*):"/>
+                                                        <h:inputText value="#{contactUsController.contactUs.email}" id="emailInput" class="form-control" required="true" requiredMessage="Required field is missing!"></h:inputText>
+                                                    </div>
+                                                </div>
+                                                <div class="row-holder">
+                                                    <div class="field-holder">
+                                                        <h:outputLabel value="Message (*):"/>
+                                                        <h:inputTextarea value="#{contactUsController.contactUs.message}" id="messageInput" class="form-control" required="true" requiredMessage="Required field is missing!"></h:inputTextarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <h:commandButton value="submit" action="#{contactUsController.createContactUs}" styleClass="btn btn-primary"/>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="joining-holder">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="joining-area">
+                                            <header class="heading-area">
+                                                <h2>We’re a social bunch</h2>
+                                                <ul class="social-networks list-inline">
+                                            <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+                                            <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+                                            <li><a href="#"><i class="icon icon-instagram"></i></a></li>
+                                            <li><a href="#"><i class="icon icon-linkedin"></i></a></li>
+                                            <li><a href="#"><i class="icon icon-google"></i></a></li>
+                                        </ul>
+                                            </header>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </h:form>
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.main.js"></script>
+    </body>
+</html>

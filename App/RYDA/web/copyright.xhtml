@@ -58,24 +58,12 @@
                             </div>
                             <a href="#" class="nav-opener"><span class="opener"></span></a>
                         </header>
-                        <div class="visual-area">
-                            <div class="image-holder">
-                                <span data-picture="data-picture" data-alt="image description">
-                                    <span data-src="images/img24.jpg" ></span>
-                                    <span data-src="images/img24-small.jpg" data-media="(max-width:767px)" ></span> <!-- retina 1x mobile -->
-                                    <span data-src="images/img24-small2x.jpg" data-media="(max-width:767px) and (-webkit-min-device-pixel-ratio:1.5), (max-width:767px) and (min-resolution:144dpi)" ></span>
-                                    <!--[if (lt IE 9) & (!IEMobile)]>
-                                            <span data-src="images/img4.jpg"></span>
-                                    <![endif]-->
-                                    <!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. -->
-                                    <noscript><img src="images/img4.jpg" alt="image description" ></img></noscript>
-                                </span>
-                            </div>
+                        <div class="visual-area add">
                             <div class="visual-caption">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-xs-12">
-                                            <h1><ui:param name="curFileName" value="#{quizController.quiz.title}"></ui:param></h1>
+                                            <h1>Copyright</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -83,29 +71,30 @@
                         </div>
                     </div>
                     <main id="main" role="main">
-                        <section class="team-blocks-area">
+                        <section class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="content-area">
+                                        <p style="margin-top: 60px;">The images contained therein were sourced from various internet websites. These images are not used for profit or business purposes. Its sole purpose is for education. The ownership of these images were never clearly asserted or does not exist at the time of their archival. However, all efforts were made to ensure that these images were sourced from a public domain source where the sites has been clearly been asserted as such. In the event that these images are copyighted and ownership can be evidenced, please contact Bijay Shahi (bijay.shahi@cqumail.com) and the images will be immediately removed from this archive.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="joining-holder">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        <div class="team-holder">
-                                            <article class="holder">
-                                                <div>
-                                                    <h:outputText styleClass="text-primary" value="No of Questions: #{attemptQuizController.studentQuestionAnswerList.size()}"></h:outputText>
-
-                                                    <h:dataTable value="#{attemptQuizController.studentQuestionAnswerList}" var="question" border="1"  styleClass="table table-striped table-bordered">
-                                                        <h:column>
-                                                            #{attemptQuizController.questionList.indexOf(question) + 1}. <h:outputText value="#{question.question}" style="vertical-align: middle;"/>
-                                 
-                                                            <h:selectOneRadio value="#{question.studentAnswerId}" id="itemInput" layout="pageDirection" required="true" requiredMessage="Please choose one of the option">
-                                                                <f:selectItems value="#{question.answers}" var="answer" itemValue="#{answer.id}" itemLabel="#{answer.answerOption}" />
-                                                            </h:selectOneRadio>
-                                                            <h:message for="itemInput" style="color:red" />
-                                                            <span style="font-style: italic; color: green;">*Hint: #{question.hint}</span>
-                                                        </h:column>
-                                                    </h:dataTable>
-                                                    <h:commandButton actionListener="#{attemptQuizController.submitStudentAnswerList}" value="Submit" styleClass="btn btn-danger"/>
-                                                </div>
-                                            </article>
+                                        <div class="joining-area">
+                                            <header class="heading-area">
+                                                <h2>We’re a social bunch</h2>
+                                                <ul class="social-networks list-inline">
+                                                    <li><a href="#"><i class="icon icon-facebook"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-instagram"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-linkedin"></i></a></li>
+                                                    <li><a href="#"><i class="icon icon-google"></i></a></li>
+                                                </ul>
+                                            </header>
                                         </div>
                                     </div>
                                 </div>

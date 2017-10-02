@@ -7,53 +7,51 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
         <ui:composition template="template/common/commonLayout.xhtml">
-            <ui:param name="curFileName" value="Quiz"></ui:param>
+            <ui:param name="curFileName" value="Contact Us"></ui:param>
             <ui:define name="content">
                 <div class="panel-body" style="float:left;">
-                    <h:link outcome="quiz.xhtml" value="Add new" styleClass="btn btn-danger"/>
+                    <h:link outcome="contactus.xhtml" value="Add new" styleClass="btn btn-danger"/>
                 </div>
                 <h:form>
                     <div class="col-md-4 search-form">
-                        <label>Search By Quiz: </label>
+                        <label>Search By Contact: </label>
                         <div class="input-group custom-search-form">
                             <h:inputText binding="#{searchParam}" styleClass="form-control" />
                             <span class="input-group-btn">
-                                <h:commandButton value="Search" action="#{quizController.searchQuiz(searchParam.value)}" styleClass="btn btn-danger"/>
+                                <h:commandButton value="Search" action="#{contactUsController.searchQuiz(searchParam.value)}" styleClass="btn btn-danger"/>
                             </span>
                         </div>
                     </div>
                 </h:form>
                 <div class="clear"></div>
                 <h:outputText class="text-uppercase" styleClass="text-primary" value="Result: "/>
-                <h:outputText styleClass="text-primary" value="#{quizController.quizList.size()} record(s)"></h:outputText>
+                <h:outputText styleClass="text-primary" value="#{contactUsController.contactUsList.size()} record(s)"></h:outputText>
                 <h:form>
-                    <h:dataTable value="#{quizController.quizList}" var="quiz" border="1"  styleClass="table table-striped table-bordered">
+                    <h:dataTable value="#{contactUsController.contactUsList}" var="contactUs" border="1"  styleClass="table table-striped table-bordered">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Quiz Id"/>
+                                <h:outputText value="Id"/>
                             </f:facet>
-                            <h:outputText value="#{quiz.id}"/>
+                            <h:outputText value="#{contactUs.firstName} #{contactUs.lastName}"/>
                         </h:column>
                         
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Quiz"/>
+                                <h:outputText value="Email"/>
                             </f:facet>
-                            <h:outputText value="#{quiz.title}"/>
+                            <h:outputText value="#{contactUs.email}"/>
                         </h:column>
                         
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Quiz Outcome"/>
+                                <h:outputText value="Message"/>
                             </f:facet>
-                            <h:outputText value="#{quiz.quizOutcome}"/>
+                            <h:outputText value="#{contactUs.message}"/>
                         </h:column>
 
                         <h:column>
                             <f:facet name="header">Action</f:facet>
-                            <h:commandButton action="#{quizController.viewAction(quiz.id)}" value="View" styleClass="btn btn-default"/>
-                            <h:commandButton action="#{quizController.deleteAction(quiz.id)}" value="Delete" styleClass="btn btn-default"/>
-                            <h:link outcome="question-list.xhtml?quizId=#{quiz.id}" value="Set Questions" styleClass="btn btn-default"/>
+                            <h:commandButton action="#{contactUsController.viewAction(contactUs.id)}" value="View" styleClass="btn btn-default"/>
                         </h:column>
                     </h:dataTable>
                 </h:form>
