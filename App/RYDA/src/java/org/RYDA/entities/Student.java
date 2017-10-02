@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 @NamedQueries({
     @NamedQuery(name = "getAllStudents", query = "SELECT s FROM Student s"),
     @NamedQuery(name = "getStudentById", query = "SELECT s FROM Student s WHERE s.id = :studentId"),
-    @NamedQuery(name = "searchStudentByName", query = "SELECT s FROM Student s WHERE s.name LIKE :name")
+    @NamedQuery(name = "searchStudentByName", query = "SELECT s FROM Student s WHERE s.name LIKE :name OR s.email LIKE :name")
 })
 public class Student implements Serializable {
 

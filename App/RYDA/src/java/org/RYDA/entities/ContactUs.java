@@ -17,11 +17,13 @@ import java.util.List;
 import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Lob;
 
 @Entity
 @NamedQueries({
     @NamedQuery(name = "listQueries", query = "SELECT c FROM ContactUs c ORDER BY c.id DESC"),
-    @NamedQuery(name = "getContactUsById", query = "SELECT c FROM ContactUs c WHERE c.id = :contactUsId")
+    @NamedQuery(name = "getContactUsById", query = "SELECT c FROM ContactUs c WHERE c.id = :contactUsId"),
+    @NamedQuery(name = "searchContactUsByTitle", query = "SELECT c FROM ContactUs c WHERE c.firstName LIKE :enquiry OR c.lastName LIKE :enquiry OR c.email LIKE :enquiry OR c.message LIKE :enquiry")
 })
 public class ContactUs implements Serializable {
 
@@ -33,6 +35,7 @@ public class ContactUs implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
+    @Lob
     private String message;
     
     public ContactUs() {

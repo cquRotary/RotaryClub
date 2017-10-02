@@ -120,4 +120,14 @@ public class ContactUsController {
     public void setIsError(boolean isError) {
         this.isError = isError;
     }
+    
+    public String searchEnquiries(String enquiry) {
+        contactUsList = contactUsEJB.searchContactUs(enquiry);
+        if (contactUsList.size() <= 0) {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No results Found"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", " " + contactUsList.size() + " record(s) found"));
+        }
+        return "contactus-list.xhtml";
+    }
 }

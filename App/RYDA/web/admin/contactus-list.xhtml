@@ -14,11 +14,11 @@
                 </div>-->
                 <h:form>
                     <div class="col-md-4 search-form">
-                        <label>Search By Contact: </label>
+                        <label>Search By Enquiry </label>
                         <div class="input-group custom-search-form">
                             <h:inputText binding="#{searchParam}" styleClass="form-control" />
                             <span class="input-group-btn">
-                                <h:commandButton value="Search" action="#{contactUsController.searchQuiz(searchParam.value)}" styleClass="btn btn-danger"/>
+                                <h:commandButton value="Search" action="#{contactUsController.searchEnquiries(searchParam.value)}" styleClass="btn btn-danger"/>
                             </span>
                         </div>
                     </div>

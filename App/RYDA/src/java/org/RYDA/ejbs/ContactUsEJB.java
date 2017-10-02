@@ -42,4 +42,9 @@ public class ContactUsEJB {
         TypedQuery<ContactUs> query = em.createNamedQuery("getContactUsById", ContactUs.class).setParameter("contactUsId", id);
         return query.getSingleResult();
     }
+    
+    public List<ContactUs> searchContactUs(String enquiry){
+        TypedQuery<ContactUs> query = em.createNamedQuery("searchContactUsByTitle", ContactUs.class).setParameter("enquiry", "%" + enquiry + "%");
+        return query.getResultList();
+    }
 }
