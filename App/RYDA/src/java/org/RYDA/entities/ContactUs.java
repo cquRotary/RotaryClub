@@ -17,6 +17,7 @@ import java.util.List;
 import javax.persistence.FetchType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Lob;
 
 @Entity
 @NamedQueries({
@@ -34,6 +35,7 @@ public class ContactUs implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
+    @Lob
     private String message;
     
     public ContactUs() {
