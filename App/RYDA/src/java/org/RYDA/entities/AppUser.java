@@ -13,7 +13,8 @@ import javax.persistence.NamedQuery;
         @NamedQuery(name = "getAllAppUsers", query = "SELECT u FROM AppUser u"),
         @NamedQuery(name = "authenticateUser", query = "SELECT u FROM AppUser u WHERE u.username = :username AND u.password = :password"),
         @NamedQuery(name = "getAppUserById", query = "SELECT u FROM AppUser u WHERE u.id = :userId"),
-        @NamedQuery(name = "getAppUserByUsername", query = "SELECT u FROM AppUser u WHERE u.username = :username")
+        @NamedQuery(name = "getAppUserByUsername", query = "SELECT u FROM AppUser u WHERE u.username = :username"),
+        @NamedQuery(name = "searchAppUser", query = "SELECT u FROM AppUser u WHERE u.username LIKE :user OR u.firstName LIKE :user OR u.lastName LIKE :user OR u.email LIKE :user")
 })
 
 public class AppUser implements Serializable {

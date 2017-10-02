@@ -46,7 +46,7 @@ public class ContactUsController {
     @PostConstruct
     public void init() 
     {
-        //contactUsList = contactUsEJB.listContactUs();
+        contactUsList = contactUsEJB.listContactUs();
     }
     
     // ======================================
@@ -90,7 +90,7 @@ public class ContactUsController {
     //method to view ContactUs detail
     public String viewAction(long id) {
         contactUs = contactUsEJB.getContactUsById(id);
-        return "contactUs-details.xhtml";
+        return "contactus-details.xhtml";
     }
 
     /**

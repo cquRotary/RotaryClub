@@ -93,4 +93,14 @@ public class AppUserController {
         appUser = appUserEJB.getAppUserById(id);
         return "user-details.xhtml";
     }
+    
+    public String searchAppUser(String title) {
+        appUserList = appUserEJB.searchAppUser(title);
+        if (appUserList.size() <= 0) {
+            FacesContext.getCurrentInstance().addMessage("successForm:errorInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No results Found"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", " " + appUserList.size() + " record(s) found"));
+        }
+        return "user-list.xhtml";
+    }
 }

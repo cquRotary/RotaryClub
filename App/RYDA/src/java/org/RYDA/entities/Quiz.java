@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "getAllQuizzes", query = "SELECT q FROM Quiz q ORDER BY q.title"),
     @NamedQuery(name = "getQuizById", query = "SELECT q FROM Quiz q WHERE q.id = :quizId"),
-    @NamedQuery(name = "searchQuizByTitle", query = "SELECT q FROM Quiz q WHERE q.title = :title")
+    @NamedQuery(name = "searchQuizByTitle", query = "SELECT q FROM Quiz q WHERE q.title LIKE :title")
 })
 
 public class Quiz implements Serializable {

@@ -7,11 +7,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:body>
         <ui:composition template="template/common/commonLayout.xhtml">
-            <ui:param name="curFileName" value="Contact Us"></ui:param>
+            <ui:param name="curFileName" value="Enquiries"></ui:param>
             <ui:define name="content">
-                <div class="panel-body" style="float:left;">
+                <!--<div class="panel-body" style="float:left;">
                     <h:link outcome="contactus.xhtml" value="Add new" styleClass="btn btn-danger"/>
-                </div>
+                </div>-->
                 <h:form>
                     <div class="col-md-4 search-form">
                         <label>Search By Contact: </label>
@@ -31,6 +31,13 @@
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{contactUs.id}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Name"/>
                             </f:facet>
                             <h:outputText value="#{contactUs.firstName} #{contactUs.lastName}"/>
                         </h:column>

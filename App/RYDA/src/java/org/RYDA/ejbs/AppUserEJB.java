@@ -61,4 +61,9 @@ public class AppUserEJB {
             return new AppUser();
         }
     }
+    
+    public List<AppUser> searchAppUser(String user){
+        TypedQuery<AppUser> query = em.createNamedQuery("searchAppUser", AppUser.class).setParameter("user", "%" + user + "%");
+        return query.getResultList();
+    }
 }
