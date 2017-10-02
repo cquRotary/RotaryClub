@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.RYDA.ejbs.ContactUsEJB;
 import org.RYDA.entities.ContactUs;
+import org.RYDA.library.Utility;
 
 @ManagedBean
 @RequestScoped
@@ -29,6 +30,8 @@ public class ContactUsController {
     private ContactUs contactUs;     
     private List<ContactUs> contactUsList;
     
+    private boolean isSuccess;
+    private boolean isError;
     // ======================================
     // =           Public Methods           =
     // ======================================
@@ -79,6 +82,8 @@ public class ContactUsController {
         contactUs = contactUsEJB.createContactUs(contactUs);
         //contactUsList = contactUsEJB.listContactUs();
         //FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully"));
+        this.isSuccess = true;
+        contactUs = new ContactUs();
         return "contactUs.xhtml";
     }
     
@@ -86,5 +91,33 @@ public class ContactUsController {
     public String viewAction(long id) {
         contactUs = contactUsEJB.getContactUsById(id);
         return "contactUs-details.xhtml";
+    }
+
+    /**
+     * @return the isSuccess
+     */
+    public boolean isIsSuccess() {
+        return isSuccess;
+    }
+
+    /**
+     * @param isSuccess the isSuccess to set
+     */
+    public void setIsSuccess(boolean isSuccess) {
+        this.isSuccess = isSuccess;
+    }
+
+    /**
+     * @return the isError
+     */
+    public boolean isIsError() {
+        return isError;
+    }
+
+    /**
+     * @param isError the isError to set
+     */
+    public void setIsError(boolean isError) {
+        this.isError = isError;
     }
 }

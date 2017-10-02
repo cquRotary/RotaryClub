@@ -20,8 +20,8 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "listQueries", query = "SELECT c FROM Contactus c ORDER BY c.id DESC"),
-    @NamedQuery(name = "getContactUsById", query = "SELECT c FROM Contactus c WHERE c.id = :contactUsId")
+    @NamedQuery(name = "listQueries", query = "SELECT c FROM ContactUs c ORDER BY c.id DESC"),
+    @NamedQuery(name = "getContactUsById", query = "SELECT c FROM ContactUs c WHERE c.id = :contactUsId")
 })
 public class ContactUs implements Serializable {
 

@@ -12,7 +12,21 @@
         <link rel="stylesheet" href="css/bootstrap.css"></link>
         <link rel="stylesheet" href="css/main.css"></link>
         <script src="https://use.typekit.net/gri5tme.js"></script>
-        <script>try {Typekit.load({async: true});} catch (e) {}</script>
+        <link href="JQueryMsg/Styles/msgBoxLight.css" rel="stylesheet" type="text/css" />
+        <script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script src="JQueryMsg/Scripts/jquery.msgBox.js" type="text/javascript"></script>
+        <script>
+            try {
+                Typekit.load({async: true});
+            } catch (e) {
+            }
+
+            $.msgBox({
+                title: "Quiz Result",
+                content: "Thank you participating in Rotary Youth Driving Awareness Program.",
+                type: "success"
+            });
+        </script>
     </head>
     <body>
         <div id="wrapper">
@@ -112,6 +126,13 @@
                 </main>
             </div>
         </div>
+        <h:outputScript>
+            $.msgBox({
+                title: "Quiz Result",
+                content: "Thank you for participating in Rotary Youth Driving Awareness Program.",
+                type: "success"
+            });
+        </h:outputScript>
         <script src="js/jquery-1.11.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.main.js"></script>
