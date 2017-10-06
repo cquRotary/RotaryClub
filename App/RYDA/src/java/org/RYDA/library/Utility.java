@@ -1,5 +1,7 @@
 package org.RYDA.library;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.Map;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -57,33 +59,48 @@ public class Utility {
 
         }
     }
-    
-    public static void writeSession(String objectName, Object object)
-    {
+
+    public static void writeSession(String objectName, Object object) {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> sessionMap = externalContext.getSessionMap();
         sessionMap.put(objectName, object);
     }
-    
-    public static Object readSession(String objectName)
-    {
+
+    public static Object readSession(String objectName) {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Map<String, Object> sessionMap = externalContext.getSessionMap();
         return sessionMap.get(objectName);
     }
-    
-    public static String readQueryString(String param)
-    {
+
+    public static String readQueryString(String param) {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         String val = params.get(param);
-        if (val == null)
-        {
+        if (val == null) {
             return "0";
         }
-        if (val.isEmpty())
-        {
+        if (val.isEmpty()) {
             return "0";
         }
         return val;
+    }
+
+    public static String sha256(String base) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }

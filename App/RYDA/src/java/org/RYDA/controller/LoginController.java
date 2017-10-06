@@ -74,7 +74,7 @@ public class LoginController {
         appUser = appUserEJB.getAppUserByUsername("admin");
         if (appUser.getId() == 0) {
             appUser.setUsername("admin");
-            appUser.setPassword("admin+123");
+            appUser.setPassword(Utility.sha256("admin+123"));
             appUser.setFirstName("Administrator");
             appUserEJB.createAppUser(appUser);
         }
@@ -83,6 +83,7 @@ public class LoginController {
 
     //method to create Quiz
     public String authenticateUser() {
+        appUser.setPassword(Utility.sha256(appUser.getPassword()));
         appUser = loginEJB.authenticateAppUser(appUser);
         
         long userId = appUser.getId();

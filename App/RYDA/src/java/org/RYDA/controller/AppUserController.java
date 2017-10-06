@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.RYDA.ejbs.AppUserEJB;
 import org.RYDA.entities.AppUser;
+import org.RYDA.library.Utility;
 
 @ManagedBean
 @RequestScoped
@@ -69,6 +70,7 @@ public class AppUserController {
     
     //method to create AppUser
     public String createAppUser() {
+        appUser.setPassword(Utility.sha256(appUser.getPassword()));
         appUser = appUserEJB.createAppUser(appUser);
         appUserList = appUserEJB.listAppUsers();
         FacesContext.getCurrentInstance().addMessage("successForm:successInput", new FacesMessage(FacesMessage.SEVERITY_INFO, "Success", "New record added successfully"));
@@ -91,7 +93,7 @@ public class AppUserController {
     /// view details of appUser
     public String viewAction(long id) {
         appUser = appUserEJB.getAppUserById(id);
-        return "user-details.xhtml";
+        return "user.xhtml";
     }
     
     public String searchAppUser(String title) {

@@ -36,4 +36,10 @@ public class StudentQuizEJB {
         TypedQuery<StudentQuiz> query = em.createNamedQuery("getStudentQuiz", StudentQuiz.class).setParameter("studentId", studentId).setParameter("quizId", quizId);
         return query.getSingleResult();
     }
+    
+    public StudentQuiz getStudentQuizByStudentId(long studentId)
+    {
+        TypedQuery<StudentQuiz> query = em.createNamedQuery("getStudentQuizByStudentId", StudentQuiz.class).setParameter("studentId", studentId);
+        return query.getSingleResult();
+    }
 }

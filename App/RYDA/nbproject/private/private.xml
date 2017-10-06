@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/JQueryMsg/Scripts/jquery.msgBox.js</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/admin/login.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/admin/question-list.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/QuizResultController.java</file>
@@ -14,6 +15,7 @@
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/Answer.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/ejbs/ReportEJB.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/AnswerController.java</file>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/ContactUsController.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/admin/report.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/ejbs/StudentQuizEJB.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/QuizAttemptResponse.java</file>
@@ -27,12 +29,15 @@
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/ejbs/QuestionEJB.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/AppUser.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/ejbs/AnswersEJB.java</file>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/AppUserController.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/StudentController.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/QuestionController.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/StudentAnswer.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/AttemptQuizController.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/LoginController.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/StudentQuiz.java</file>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/admin/quiz.xhtml</file>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/ContactUs.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/attemptQuiz-bak.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/admin/student-list.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/ReportController.java</file>
@@ -44,14 +49,17 @@
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/controller/DashboardController.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/WEB-INF/web.xml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/Question.java</file>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/contactUs.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/java/org/RYDA/entities/Quiz.java</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/src/conf/persistence.xml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/template/common/commonHeader.xhtml</file>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/css/main.css</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/attemptQuiz.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/template/common/commonContent.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/admin/student-result.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/attemptResult.xhtml</file>
             <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/admin/report-student.xhtml</file>
+            <file>file:/D:/Academics/Project/RotaryClub/App/RYDA/web/quizOutcome.xhtml</file>
         </group>
     </open-files>
 </project-private>

@@ -27,8 +27,15 @@ public class AppUserEJB {
     // =           Public Methods           =
     // ======================================
     
-    public AppUser createAppUser(AppUser appUser){              
-        em.persist(appUser);
+    public AppUser createAppUser(AppUser appUser){       
+        if (appUser.getId() != null)
+        {
+            em.merge(appUser);
+        }
+        else{
+            em.persist(appUser);
+        }
+        
         return appUser;
     }
     

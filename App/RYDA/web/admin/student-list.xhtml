@@ -62,7 +62,7 @@
                         
                         <h:column>
                             <f:facet name="header">Action</f:facet>
-                            <h:commandButton action="#{studentController.viewQuizAttempt(student.id)}" value="View Quiz Attempt" styleClass="btn btn-default"/>
+                            <h:commandButton actionListener="#{studentController.viewQuizAttempt(student.id)}" value="View Quiz Attempt" styleClass="btn btn-default"/>
                         </h:column>
                     </h:dataTable>
                 </h:form>

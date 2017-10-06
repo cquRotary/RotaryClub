@@ -15,7 +15,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "getStudentsByQuizId", query ="SELECT a FROM Student a WHERE a.id IN (SELECT sq.studentId FROM StudentQuiz sq WHERE sq.quizId = :quizId)"),
     @NamedQuery(name = "getQuizAttemptCount", query = "SELECT s.quizId, q.title quizTitle, COUNT(1) attemptCount FROM StudentQuiz s, Quiz q WHERE s.quizId = q.id GROUP BY s.quizId, q.title"),
-    @NamedQuery(name = "getStudentQuiz", query = "SELECT a FROM StudentQuiz a WHERE a.studentId = :studentId AND a.quizId = :quizId")
+    @NamedQuery(name = "getStudentQuiz", query = "SELECT a FROM StudentQuiz a WHERE a.studentId = :studentId AND a.quizId = :quizId"),
+    @NamedQuery(name = "getStudentQuizByStudentId", query = "SELECT a FROM StudentQuiz a WHERE a.studentId = :studentId")
 })
 public class StudentQuiz implements Serializable {
 

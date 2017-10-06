@@ -14,7 +14,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import org.RYDA.ejbs.StudentEJB;
+import org.RYDA.ejbs.StudentQuizEJB;
 import org.RYDA.entities.Student;
+import org.RYDA.entities.StudentQuiz;
+import org.RYDA.library.Utility;
 
 @ManagedBean
 @RequestScoped
@@ -29,6 +32,9 @@ public class StudentController {
     private Student student;     
     private List<Student> studentList;
     
+    @EJB
+    private StudentQuizEJB studentQuizEJB;
+    private StudentQuiz studentQuiz;
     // ======================================
     // =           Public Methods           =
     // ======================================
@@ -75,9 +81,10 @@ public class StudentController {
     }
     
     //method to view student detail
-    public String viewQuizAttempt(long id) {
+    public void viewQuizAttempt(long id) {
         student = studentEJB.getStudentById(id);
-        return "student-details.xhtml";
+        studentQuiz = studentQuizEJB.getStudentQuizByStudentId(id);
+        Utility.RedirectUrl("student-result.xhtml?studentId=" + id + "&quizId=" + studentQuiz.getQuizId());
     }
     
     public String searchStudent(String name) {

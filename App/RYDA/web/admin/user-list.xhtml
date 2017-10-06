@@ -34,7 +34,12 @@
                             </f:facet>
                             <h:outputText value="#{appUser.id}"/>
                         </h:column>
-                        
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Username"/>
+                            </f:facet>
+                            <h:outputText value="#{appUser.username}"/>
+                        </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Full Name"/>
@@ -52,18 +57,6 @@
                                 <h:outputText value="Phone Number"/>
                             </f:facet>
                             <h:outputText value="#{appUser.phoneNumber}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Username"/>
-                            </f:facet>
-                            <h:outputText value="#{appUser.username}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Password"/>
-                            </f:facet>
-                            <h:outputText value="#{appUser.password}"/>
                         </h:column>
 
                         <h:column>
